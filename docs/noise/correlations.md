@@ -1,0 +1,1 @@
+# Correlaciones de ruido ambiente
