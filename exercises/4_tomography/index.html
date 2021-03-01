@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Caracterísicas - SWTomo</title>
+  <title>4. Tomografía - SWTomo</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Caracter\u00edsicas";
-    var mkdocs_page_input_path = "noise/properties.md";
+    var mkdocs_page_name = "4. Tomograf\u00eda";
+    var mkdocs_page_input_path = "exercises/4_tomography.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,12 +59,10 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Ruido ambiente</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Caracterísicas</a>
-    <ul class="current">
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../noise/properties/">Caracterísicas</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../correlations/">Correlaciones</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../noise/correlations/">Correlaciones</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Tomografia</span></p>
@@ -73,20 +71,26 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Ejercicios</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/0_installation/">0. Instalación</a>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../0_installation/">0. Instalación</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/1_earthquakes/">1. Medidas de dispersión</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../1_earthquakes/">1. Medidas de dispersión</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/2_correlations/">2. Correlaciones de ruido</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../2_correlations/">2. Correlaciones de ruido</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/3_dispersion/">3. Modelos de velocidad</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../3_dispersion/">3. Modelos de velocidad</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/4_tomography/">4. Tomografía</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">4. Tomografía</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#41-visualize-dispersion-measurements-preparation-for-tomography">4.1. Visualize dispersion measurements. Preparation for tomography</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#42-surface-wave-tomography-2d">4.2. Surface wave tomography (2D)</a>
+    </li>
+    </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/5_kernels/">5. Kernels de sensitividad</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../5_kernels/">5. Kernels de sensitividad</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/6_inversion/">6. Inversión 1D</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../6_inversion/">6. Inversión 1D</a>
                     </li>
                 </ul>
       </div>
@@ -110,11 +114,11 @@
     
       
         
-          <li>Ruido ambiente &raquo;</li>
+          <li>Ejercicios &raquo;</li>
         
       
     
-    <li>Caracterísicas</li>
+    <li>4. Tomografía</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -125,7 +129,34 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="caracteristicas-del-ruido-ambiente">Características del ruido ambiente</h1>
+                <h1 id="4-tomografia-2d-de-ondas-superficiales">4. Tomografía 2D de ondas superficiales</h1>
+<h2 id="41-visualize-dispersion-measurements-preparation-for-tomography">4.1. Visualize dispersion measurements. Preparation for tomography</h2>
+<p>Working directory:</p>
+<pre><code>$ cd
+$ plot_aftan_disp.sh prefix
+</code></pre>
+<p>Look at the contents of the dsp and phv files</p>
+<p>Devise a strategy to convert station pair measurements into files that contain dispersion measurements for a given period (with different files for group and phase velocities and Love and Rayleigh waves: RC, RU, LC, LU).</p>
+<p>Look at the contents of ~/scripts/get_mftdisp.sh. Run script:</p>
+<pre><code>$ get_mftdisp.sh
+</code></pre>
+<p>Check number of measurements for each file:</p>
+<pre><code>$ wc -l *.dat
+</code></pre>
+<p>Look at the contents of the dat files.</p>
+<h2 id="42-surface-wave-tomography-2d">4.2. Surface wave tomography (2D)</h2>
+<p>Working directory:</p>
+<pre><code>$ cd
+$ cd exercises/tomography/RC020.0
+</code></pre>
+<p>Look at contents of tomo.sh and run it:</p>
+<pre><code>$ tomo.sh
+</code></pre>
+<p>Plot results:</p>
+<pre><code>$ plot_map.sh RC_1200_250_10_20.0.1
+$ gv RC_1200_250_10_20.0.ps
+</code></pre>
+<p>Change values of alpha and sigma and see differences in results.</p>
               
             </div>
           </div>
@@ -133,10 +164,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../correlations/" class="btn btn-neutral float-right" title="Correlaciones">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../5_kernels/" class="btn btn-neutral float-right" title="5. Kernels de sensitividad">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../dispersion/group/" class="btn btn-neutral" title="Velocidad de group"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3_dispersion/" class="btn btn-neutral" title="3. Modelos de velocidad"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -162,10 +193,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../dispersion/group/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../3_dispersion/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../correlations/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../5_kernels/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Caracterísicas - SWTomo</title>
+  <title>1. Medidas de dispersión - SWTomo</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Caracter\u00edsicas";
-    var mkdocs_page_input_path = "noise/properties.md";
+    var mkdocs_page_name = "1. Medidas de dispersi\u00f3n";
+    var mkdocs_page_input_path = "exercises/1_earthquakes.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -59,12 +59,10 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Ruido ambiente</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Caracterísicas</a>
-    <ul class="current">
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../noise/properties/">Caracterísicas</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../correlations/">Correlaciones</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../noise/correlations/">Correlaciones</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Tomografia</span></p>
@@ -73,20 +71,26 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Ejercicios</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/0_installation/">0. Instalación</a>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../0_installation/">0. Instalación</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/1_earthquakes/">1. Medidas de dispersión</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">1. Medidas de dispersión</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#11-observation-of-surface-waves-and-sac-basics">1.1 Observation of surface waves and SAC basics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-measure-group-velocity-from-earthquakes">2. Measure group velocity from earthquakes</a>
+    </li>
+    </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/2_correlations/">2. Correlaciones de ruido</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../2_correlations/">2. Correlaciones de ruido</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/3_dispersion/">3. Modelos de velocidad</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../3_dispersion/">3. Modelos de velocidad</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/4_tomography/">4. Tomografía</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../4_tomography/">4. Tomografía</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/5_kernels/">5. Kernels de sensitividad</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../5_kernels/">5. Kernels de sensitividad</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../exercises/6_inversion/">6. Inversión 1D</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../6_inversion/">6. Inversión 1D</a>
                     </li>
                 </ul>
       </div>
@@ -110,11 +114,11 @@
     
       
         
-          <li>Ruido ambiente &raquo;</li>
+          <li>Ejercicios &raquo;</li>
         
       
     
-    <li>Caracterísicas</li>
+    <li>1. Medidas de dispersión</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -125,7 +129,72 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="caracteristicas-del-ruido-ambiente">Características del ruido ambiente</h1>
+                <h1 id="1-medidas-de-dispersion-de-ondas-superficiales-de-terremotos">1. Medidas de dispersión de ondas superficiales de terremotos</h1>
+<h2 id="11-observation-of-surface-waves-and-sac-basics">1.1 Observation of surface waves and SAC basics</h2>
+<p>Go to working directory <code>~/exercises/earthquake</code>, launch <code>SAC</code> and run the following commands:</p>
+<pre><code>$ cd 
+$ cd exercises/earthquake           # use tab completion
+$ sac
+SAC &gt; r GUD*
+SAC &gt; qdp off
+SAC &gt; p1
+SAC &gt; rmean
+SAC &gt; taper
+SAC &gt; lowpass co .1 n 3 p 2     # search meaning in SAC manual
+SAC &gt; ppk bell off              # use “x” and “o” to zoom in and out
+SAC &gt; ...
+SAC&gt; r ESBBESBHZ ESBBESBHR
+SAC&gt; rmean
+SAC&gt; taper
+SAC&gt; lp                 # commands remember parameters
+SAC&gt; p1
+SAC&gt; xlim 130 170
+SAC&gt; p1
+SAC&gt; ppm                    # plots particle motion
+SAC &gt; q
+$
+</code></pre>
+<p>Use cursor to check that Rayleigh wave is elliptically polarized.
+Use ppm command to see particle motion in ZR plane.</p>
+<p><a href="https://ds.iris.edu/files/sac-manual/">SAC manual</a></p>
+<p>Repeat for other stations.</p>
+<p>Other commands to check: <code>lh</code>, <code>bp</code>, <code>fft</code>, <code>psp</code>, <code>sss</code>, <code>sort</code>.</p>
+<h2 id="2-measure-group-velocity-from-earthquakes">2. Measure group velocity from earthquakes</h2>
+<p>Working directory:</p>
+<pre><code>$ cd 
+$ cd exercises/earthquake
+</code></pre>
+<p>First try simple approach: filtering and envelope:</p>
+<pre><code>$ sac
+SAC&gt; r GUD*
+GUDESHHR GUDESHHT GUDESHHZ
+SAC&gt; qdp off
+SAC&gt; p1
+SAC&gt; xlim 100 300
+SAC&gt; p1
+SAC&gt; rmean
+SAC&gt; taper
+SAC&gt; bp co .09 .11 n 3 p 2
+SAC&gt; p1
+SAC&gt; envelope
+SAC&gt; p1
+SAC&gt; ppk bell off
+</code></pre>
+<p>Select peak of envelope. Calculate group velocity <script type="math/tex">U</script> by simply doing: <script type="math/tex">U = \Delta / t</script>
+where <script type="math/tex">\Delta</script> is the epicentral distance, and <script type="math/tex">t</script> is arrival time.</p>
+<p>Repeat for other periods. Note the artifacts when the filter is too narrow.</p>
+<p>Then try with <code>do_mft</code>:</p>
+<pre><code>$ do_mft -G GUD*
+</code></pre>
+<p>Compare results obtained manually with the output files <code>*.dsp</code></p>
+<p>Process the entire event:</p>
+<pre><code>$ do_mft -G *T
+$ do_mft -G *Z
+$ do_mft -G *R
+</code></pre>
+<p>Check that the measurements on the vertical and radial component are identical.</p>
+<p>Plot results</p>
+<p><strong>Need file to plot dsp files.</strong></p>
               
             </div>
           </div>
@@ -133,10 +202,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../correlations/" class="btn btn-neutral float-right" title="Correlaciones">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../2_correlations/" class="btn btn-neutral float-right" title="2. Correlaciones de ruido">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../dispersion/group/" class="btn btn-neutral" title="Velocidad de group"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../0_installation/" class="btn btn-neutral" title="0. Instalación"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -162,10 +231,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../dispersion/group/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../0_installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../correlations/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../2_correlations/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
