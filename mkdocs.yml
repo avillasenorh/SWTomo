@@ -11,7 +11,13 @@ nav:
     - Tomografia:
         - Mapas de dispersión: 'tomo/maps.md'
     - Ejercicios:
-         - 1. Medidas de dispersión: 'exercises/1_dispersion.md'
+         - 0. Instalación: 'exercises/0_installation.md'
+         - 1. Medidas de dispersión: 'exercises/1_earthquakes.md'
+         - 2. Correlaciones de ruido: 'exercises/2_correlations.md'
+         - 3. Modelos de velocidad: 'exercises/3_dispersion.md'
+         - 4. Tomografía: 'exercises/4_tomography.md'
+         - 5. Kernels de sensitividad: 'exercises/5_kernels.md'
+         - 6. Inversión 1D: 'exercises/6_inversion.md'
 
 theme: readthedocs
 
