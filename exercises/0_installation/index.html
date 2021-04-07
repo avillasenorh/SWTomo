@@ -74,6 +74,14 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">0. Instalación</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#posibles-problemas">Posibles problemas:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#utilizando-windows">Utilizando Windows</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#utilizando-macos">Utilizando macOS</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../1_earthquakes/">1. Medidas de dispersión</a>
@@ -126,17 +134,93 @@
             <div class="section">
               
                 <h1 id="instalacion-de-la-maquina-virtual">Instalación de la máquina virtual</h1>
+<p>Para la realización de los ejercicios he preparado una máquina virtual en Linux
+conteniendo todo el software ya instalado y los datos necesarios para llevarlos a cabo.</p>
+<p>El archivo <code>course.ova</code> con la máquina virtual (6.4 GB) puede descargarse en este
+<a href="https://www.dropbox.com/s/wr3spoq4fld1swb/course.ova?dl=0">link</a>.</p>
+<p>Para instalar la máquina virtual necesitaréis el software <code>VirtualBox</code>. Este software
+es gratuito y está disponible para ordenadores en Windows, macOS y Linux. Puede
+descargarse en la página principal de <a href="https://www.virtualbox.org">VirtualBox</a>.</p>
+<p>Una vez instalado <code>VirtualBox</code> habréis de crear la máquina virtual utilizando el
+archivo <code>course.ova</code> y siguiendo los siguientes pasos:</p>
+<ol>
+<li>Abrir la aplicación <code>VirtualBox</code></li>
+<li>Abrir el menú: <code>File &gt; Import Appliance</code></li>
+<li>Navegar hasta el directorio donde habéis descargado el archivo <code>course.ova</code>,
+   seleccionad el archivo y haced click en <code>Open</code> y después en <code>Continue</code>. Entonces
+   aparecerá una ventana similar a esta: <img alt="appliance_settings" src="../appliance_settings.png" /></li>
+<li>En esta ventana podéis cambiar algunos valores como el nombre de la máquina virtual,
+   el número de CPUs, y la RAM. Por el momento se pueden dejar con sus valores por
+   defecto y se pueden cambiar más adelante. Hacer click en <code>Import</code> para generar la
+   máquina virtual. Esto puede tardar unos minutos dependiendo del ordenador.</li>
+<li>Una vez creada la máquina virtual aparece la ventana para administrar máquinas virtuales:
+   <img alt="virtualbox_manager" src="../virtualbox_manager.png" />
+   Si no habéis modificado el nombre, la nueva máquina virtual aparecerá como <code>Ubuntu 16.04</code>.
+   Haciendo click en el botón <code>Settings</code> pueden modificarse los valores de CPUs, RAM, etc de
+   la máquina virtual. En cuanto a CPUs, con 1 es suficiente. En cuanto a la RAM, un valor
+   entre 1 GB y la mitad de la RAM del ordenador es apropiado. Si vuestro ordenador tiene poca
+   RAM (4 GB o menos), intentad no correr ninguna otra aplicación mientras utilizáis la máquina
+   virtual.</li>
+<li>Una vez hayáis modificado los ajustes de la máquina virtual, podéis arrancarla haciendo click
+   el <code>Start</code> (flecha verde).
+   Si la máquina virtual ha arrancado correctamente, podéis hacer click en el icono de la aplicación
+   <code>Terminal</code> y ejecutar el comando <code>ls -l</code>. Entonces vuestra pantalla debería ser similar a esta:
+   <img alt="virtual_machine" src="../virtual_machine.png" /></li>
+<li>Una vez inicada la máquina virtual, es conveniente instalar las <code>Guest Additions</code>. Ir al menú
+   <code>Devices &gt; Insert Guest Additions CD Image...</code>. Esto montará un CD virtual que ejecutará 
+   automaticamente la instalación de las <code>Guest Additions</code>. Una vez se hayan instalado, expulsar
+   el CD y reiniciar la máquina virtual. La instalación solo ha de realizarse una vez.</li>
+<li>Si la máquina virtual no ha arrancado correctamente o reacciona muy lentamente, mirad la 
+   sección <strong>Posibles problemas</strong> al final de esta página.</li>
+</ol>
+<p>La máquina virtual que habéis instalado contiene un entorno de trabajo completo para
+aplicaciones de Sismología en general y de Tomografía de Ondas Superficiales en particular.
+Tiene instaladas las siguientes aplicaciones:</p>
+<ul>
+<li><code>SAC</code> (Seismic Analysis Code): herramienta interactiva para el análisis de sismogramas</li>
+<li><code>SEISAN</code>: paquete para el procesado de terremotos y redes sísmicas</li>
+<li><code>CPS</code> (Computer Programs in Seismology): colección de programas desarrollados por
+   Bob Herrmann (University of Saint Louis) para múltiples aplicaciones en Sismología
+   (procesado de ondas superficiales, generación de sismogramas sintéticos, determinación
+   de mecanismos focales, etc).</li>
+<li><code>GMT5</code> (Generic Mapping Tools): programas para generar mapas, y gráficos para visualización
+   de datos.</li>
+<li>Programas llevar a cabo el proceso completo de tomografía con ondas superficiales.</li>
+</ul>
+<p>Cuando hayáis confirmado que la máquina virtual funciona correctamente, entonces podréis
+borrar el archivo <code>course.ova</code> para ahorrar espacion en disco.</p>
+<h2 id="posibles-problemas">Posibles problemas:</h2>
+<p>A pesar de que <code>VirtualBox</code> es posiblemente el programa más extendido para crear máquinas
+virtuales con distintos sistemas operativos, es posible que os encontréis con algunos
+problemas al correr la máquina virtual. Los problemas más comunes son:</p>
+<h3 id="utilizando-windows">Utilizando Windows</h3>
+<p>Al intentar arrancar la máquina virtual es posible que aparezca un mensaje de error
+similar a este:</p>
+<pre><code>VT-x/AMD-V hardware acceleration is not available on your system
+</code></pre>
+<p>Si vuestra CPU es muy antigua puede que no soporte <code>VT-x/AMD-V</code> y entonces no podréis utilizar
+la máquina virtual. Sin embargo lo más habitual es que <code>VT-x/AMD-V</code> no esté activado, y/o que
+vuestro ordenador esté utilizando <code>Hyper-V</code> que es la tecnología de virtualización de Microsoft
+y que suele estar activada por defecto.</p>
+<p>Si os encontráis con este error, en este
+<a href="https://appuals.com/fix-vt-x-amd-v-hardware-acceleration-is-not-available-on-your-system/">link</a>
+podéis encontrar información detallada sobre como activar <code>VT-x/AMD-V</code>.</p>
+<p>Si al arrancar la máqina virtual no os da ningún error pero funciona muy lenta, puede
+deberse al problema descrito en este 
+<a href="https://mybyways.com/blog/virtualbox-very-slow-on-windows-10">link</a>
+y que también tiene que ver con <code>Hyper-V</code>.</p>
+<h3 id="utilizando-macos">Utilizando macOS</h3>
+<p>Si tenéis in Mac reciente con pantalla retina, también es posible que VirtualBox funcione 
+muy lentamente, incluso en ordenadores con varios núcleos y mucha memoria.</p>
+<p>La solución es abrir VirtualBox en modo de baja resolución, siguiendo los siguientes pasos descritos en este
+<a href="https://www.reddit.com/r/virtualbox/comments/houi9k/how_to_fix_virtualbox_61_running_slow_on_mac/">post de Reddit</a>:</p>
 <ol>
 <li>Navigate to Apps folder. Choose VirtualBox.app</li>
 <li>Right click on VirtualBox.app, Show Package Contents.</li>
 <li>Contents -&gt; Resources -&gt; VirtualBoxVM.app (right click -&gt; Get info)</li>
 <li>Check the "Open in Low Resolution" checkbox.</li>
-<li>Run the Virtual Machine in 100% scale mode.</li>
+<li>Run the Virtual Machine in 100% scale mode and with the "VBoxSVGA" graphics controller selected</li>
 </ol>
-<p>I also reduced the display scale factor from 200% to 100% and selected the "VBoxSVGA" graphics controller. Now in full-screen mode, with "auto-resize guest display" selected, on my 13-inch MacBook Pro screen the Ubuntu display settings show 1440x900 and everything looks good and works fast. Thank you so much!</p>
-<p><a href="https://forums.virtualbox.org/viewtopic.php?f=8&amp;t=90446&amp;p=473464&amp;hilit=slow">Solution</a></p>
-<p><a href="https://www.reddit.com/r/virtualbox/comments/houi9k/how_to_fix_virtualbox_61_running_slow_on_mac/">Reddit</a></p>
-<p>There are also <a href="https://mybyways.com/blog/virtualbox-very-slow-on-windows-10">problems with Windows 10</a></p>
               
             </div>
           </div>
