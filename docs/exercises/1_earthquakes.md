@@ -2,7 +2,7 @@
 
 ## 1.1. Observación de ondas superficiales y fundamentos de SAC
 
-En primer lugar utilizaremos el programs `SAC` (Seismic Analysis Code) para visualizar
+En primer lugar utilizaremos el programa `SAC` (Seismic Analysis Code) para visualizar
 sismogramas e identificar las ondas superficiales. El manual detallado de `SAC` se
 encuentra en este [enlace](https://ds.iris.edu/files/sac-manual/).
 
@@ -21,28 +21,40 @@ Lanzar el program `SAC` y ejecutar los siguientes comandos:
     SAC > p1                        # dibujar los datos
     SAC > rmean                     # quitar la media
     SAC > taper                     # aplicar un taper antes de filtrar
-    SAC > lowpass co .1 n 3 p 2		# filtro pasa bajas frecuencias
-    SAC > ppk bell off				# plot and pick: usar “x” y “o” para hacer y deshacer zoom
+    SAC > lowpass co .1 n 3 p 2     # filtro pasa bajas frecuencias
+    SAC > ppk bell off              # plot and pick: usar “x” y “o” para hacer y deshacer zoom
     SAC > ...                       # practicar con ppk y presionar "q" para volver al programa
     SAC> r ESBBESBHZ ESBBESBHR      # leer solo las componentes vertical y radial
     SAC> rmean
     SAC> taper
-    SAC> lp					        # en SAC los comandos recuerdan los parámetros anteriores
-    SAC> p1
+    SAC> lpowpass                   # en SAC los comandos recuerdan los parámetros anteriores
+    SAC> ppk                        # usar el cursor para comprobar que las componentes Z y T están desfasadas
     SAC> xlim 130 170               # limitar el rango de tiempo a dibujar
     SAC> p1
-    SAC> ppm					    # dibujar el movimiento de la partícula
+    SAC> ppm                        # dibujar el movimiento de la partícula
     SAC > q                         # salir de SAC
     $
 
+Sismogramas originales para la estación GUD:
 
-Use cursor to check that Rayleigh wave is elliptically polarized.
-Use ppm command to see particle motion in ZR plane.
+![seismogram_raw](seismogram_raw.png)
+
+Sismogramas filtrados con pasa bajo de 10 segundos (después de ejecutar el comando `lowpass co .1 n 3 p 2`):
+
+![seismogram_lowpass](seismogram_lowpass.png)
+
+Movimiento de la partícula para la estación ESBB (después de ejecutar el comando `ppm`):
+
+![particle_motion](particle_motion.png)
 
 Repetir este procesado con otras estaciones.
 
-Otros comandos útiles de `SAC` son: `bp`, `fft`, `psp`. Buscarlos en el manual y
-aplicarlos a alguon de los datos en este directorio.
+Otros comandos útiles de `SAC` son: `bp`, `fft`, `psp`. Buscarlos en el manual o usar
+la ayuda del programa:
+
+    SAC > help bp
+ 
+Probar estos comandos con algunos de los sismogramas en este directoria
 
 ## 1.2. Medida de velocidad de grupo de terremotos
 
@@ -81,7 +93,7 @@ dará la velocidad de la onda Rayleigh. La velocidad de grupo \(U\) se calcula s
 del archivo `SAC` y \(t\) es el tiempo de llegada medido del máximo de la envolvente.
 
 Repetir este proceso para otros periodos (p.e. 5 segundos). Si la banda de frecuencia del filtro
-es muy estrecha pueden aparecer artefactos en la señal filtrada
+es muy estrecha pueden aparecer artefactos en la señal filtrada.
 
 En segundo lugar probaremos en método FTAN (frequency-time analysis), en concreto la implementación
 de este método en el programa `do_mft` de los Computer Programs in Seismology.
@@ -165,6 +177,6 @@ Para procesar todos los archivos en un directorio:
     $ do_mft -G *Z       # componente vertical para medir dispersión de ondas Rayleigh
     $ do_mft -G *R       # componente radial; debería dar la misma medida que utilizando la vertical
 
-Check that the measurements on the vertical and radial component are identical.
+Comprobar también que las medidas de dispersión realizadas en las componentes vertical y radial son iguales.
 
 [//]: # (TO-DO: script para comparar resultados)
