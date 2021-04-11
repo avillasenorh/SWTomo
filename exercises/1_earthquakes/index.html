@@ -131,7 +131,7 @@
               
                 <h1 id="1-medidas-de-dispersion-de-ondas-superficiales-de-terremotos">1. Medidas de dispersión de ondas superficiales de terremotos</h1>
 <h2 id="11-observacion-de-ondas-superficiales-y-fundamentos-de-sac">1.1. Observación de ondas superficiales y fundamentos de SAC</h2>
-<p>En primer lugar utilizaremos el programs <code>SAC</code> (Seismic Analysis Code) para visualizar
+<p>En primer lugar utilizaremos el programa <code>SAC</code> (Seismic Analysis Code) para visualizar
 sismogramas e identificar las ondas superficiales. El manual detallado de <code>SAC</code> se
 encuentra en este <a href="https://ds.iris.edu/files/sac-manual/">enlace</a>.</p>
 <p>Los sismogramas de este ejercicio se encuentran en el directorio <code>~/exercises/earthquake</code>
@@ -153,19 +153,26 @@ SAC &gt; ...                       # practicar con ppk y presionar "q" para volv
 SAC&gt; r ESBBESBHZ ESBBESBHR      # leer solo las componentes vertical y radial
 SAC&gt; rmean
 SAC&gt; taper
-SAC&gt; lp                         # en SAC los comandos recuerdan los parámetros anteriores
-SAC&gt; p1
+SAC&gt; lpowpass                   # en SAC los comandos recuerdan los parámetros anteriores
+SAC&gt; ppk                        # usar el cursor para comprobar que las componentes Z y T están desfasadas
 SAC&gt; xlim 130 170               # limitar el rango de tiempo a dibujar
 SAC&gt; p1
 SAC&gt; ppm                        # dibujar el movimiento de la partícula
 SAC &gt; q                         # salir de SAC
 $
 </code></pre>
-<p>Use cursor to check that Rayleigh wave is elliptically polarized.
-Use ppm command to see particle motion in ZR plane.</p>
+<p>Sismogramas originales para la estación GUD:</p>
+<p><img alt="seismogram_raw" src="../seismogram_raw.png" /></p>
+<p>Sismogramas filtrados con pasa bajo de 10 segundos (después de ejecutar el comando <code>lowpass co .1 n 3 p 2</code>):</p>
+<p><img alt="seismogram_lowpass" src="../seismogram_lowpass.png" /></p>
+<p>Movimiento de la partícula para la estación ESBB (después de ejecutar el comando <code>ppm</code>):</p>
+<p><img alt="particle_motion" src="../particle_motion.png" /></p>
 <p>Repetir este procesado con otras estaciones.</p>
-<p>Otros comandos útiles de <code>SAC</code> son: <code>bp</code>, <code>fft</code>, <code>psp</code>. Buscarlos en el manual y
-aplicarlos a alguon de los datos en este directorio.</p>
+<p>Otros comandos útiles de <code>SAC</code> son: <code>bp</code>, <code>fft</code>, <code>psp</code>. Buscarlos en el manual o usar
+la ayuda del programa:</p>
+<pre><code>SAC &gt; help bp
+</code></pre>
+<p>Probar estos comandos con algunos de los sismogramas en este directoria</p>
 <h2 id="12-medida-de-velocidad-de-grupo-de-terremotos">1.2. Medida de velocidad de grupo de terremotos</h2>
 <p>Ir al direcorio de trabajo:</p>
 <pre><code>$ cd 
@@ -197,7 +204,7 @@ dará la velocidad de la onda Rayleigh. La velocidad de grupo <script type="math
 <script type="math/tex">U = \Delta / t</script> donde <script type="math/tex">\Delta</script> es la distancia epicentral (variable <code>delta</code> de la cabecera
 del archivo <code>SAC</code> y <script type="math/tex">t</script> es el tiempo de llegada medido del máximo de la envolvente.</p>
 <p>Repetir este proceso para otros periodos (p.e. 5 segundos). Si la banda de frecuencia del filtro
-es muy estrecha pueden aparecer artefactos en la señal filtrada</p>
+es muy estrecha pueden aparecer artefactos en la señal filtrada.</p>
 <p>En segundo lugar probaremos en método FTAN (frequency-time analysis), en concreto la implementación
 de este método en el programa <code>do_mft</code> de los Computer Programs in Seismology.</p>
 <p>Estando en el directorio de trabajo <code>~/exercises/earthquake</code> introducir:</p>
@@ -261,7 +268,7 @@ con el obtenido utilizando el máximo de la envolvente.</p>
 $ do_mft -G *Z       # componente vertical para medir dispersión de ondas Rayleigh
 $ do_mft -G *R       # componente radial; debería dar la misma medida que utilizando la vertical
 </code></pre>
-<p>Check that the measurements on the vertical and radial component are identical.</p>
+<p>Comprobar también que las medidas de dispersión realizadas en las componentes vertical y radial son iguales.</p>
               
             </div>
           </div>

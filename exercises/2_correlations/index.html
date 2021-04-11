@@ -80,6 +80,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#21-procesado-manual-con-do_mft">2.1. Procesado manual con do_mft</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#22-procesado-automatico-utilizando-ftan">2.2. Procesado automático utilizando FTAN</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../3_dispersion/">3. Modelos de velocidad</a>
@@ -145,24 +147,56 @@ $ ls                                    # ver el contenido del directorio
 de forma manual, ejecutar <code>do_mft</code> con las siguientes opciones:</p>
 <pre><code>$ do_mft -G -IG *_S
 </code></pre>
-<p>Para visualizar los resultados:</p>
-<pre><code>$ plot_aftan_disp.sh COR_ARAC.IG._MVO.PM. (prefix of dsp and phv files)
+<p>Igual que con terremotos pero con una opción adicional: <code>PhVel</code></p>
+<p><img alt="do_mft_corr_ftan" src="../do_mft_corr_ftan.png" /></p>
+<p>Seleccionar la velocidad de grupo siguiendo los mismos pasos que en el ejercicio 1.
+Cuando esté seleccionada hacer click en <code>PhVel</code>. Entonces aparecerá la pantalla siguiente:</p>
+<p><img alt="do_mft_corr_phase" src="../do_mft_corr_phase.png" /></p>
+<p>En el panel de la derecha se muestra de nuevo el análisis FTAN, y en el de la
+izquierda las posibles curvas de velocidad de fase. Hay que seleccionar la curva
+que tenga unos valores de la velocidad similares (un poco superiores) a la curva
+de velocidad de grupo. Esto se hace de la misma forma que con la velocidad de
+grupo, pulsando primero <code>Auto</code> y después haciendo click sobre los puntos que se
+quieren seleccionar. Los puntos seleccionados cambian a color blanco, como se 
+muestra en la siguiente figura:</p>
+<p><img alt="do_mft_corr_phase_selected" src="../do_mft_corr_phase_selected.png" /></p>
+<p>Para salvar la curva de velocidad de fase hacer click en <code>Save</code>. Esto generará 
+un archivo con el mismo nombre que el archivo del sismograma, añadiéndole la
+extensión <code>.phv</code>. Después de guardar el archivo de velocidad de fase el programa
+vuelve a la pantalla de velocidad de grupo. En esta hay que pulsar <code>Exit</code> para
+guardar el archivo con la velocidad de grupo (extensión <code>.dsp</code>).</p>
+<p>Seleccionar por ejemplo el archivo <code>COR_ARAC.IG._MVO.PM._ZZ_S</code>, que es el
+resultado de correlacionar las componentes verticales (Z) de las estaciones
+ARAC (Aracena) y MVO (Marvao, Portugal). Realizar la medida de la velocidad de
+fase y de grupo y guardar los resultados (archivos <code>COR_ARAC.IG._MVO.PM._ZZ_S.phv</code> y
+<code>COR_ARAC.IG._MVO.PM._ZZ_S.dsp</code> respectivamente). Estas curvas pueden visualizarse
+utilizando el script <code>plot_aftan_disp.sh</code>:</p>
+<pre><code>$ plot_aftan_disp.sh COR_ARAC.IG._MVO.PM.   # COR_ARAC.IG._MVO.PM. es el prefijo de los archivos .dsp y .phv
 </code></pre>
+<p>El script producirá un warning de que faltan ciertos archivos (esto es normal puesto que no han sido creados todavía)
+y generará un archivo en formato PostScript <code>COR_ARAC.IG._MVO.PM..ps</code> que puede visualizarse con el programa <code>gv</code>:</p>
+<pre><code>$ gv COR_ARAC.IG._MVO.PM..ps                 # presionar "q" para salir de gv
+</code></pre>
+<p><img alt="cor_manual" src="../cor_manual.png" /></p>
+<p>La línea continua roja es la velocidad de fase y la línea discontinua roja la velocidad de grupo.</p>
 <p>Verify that phase velocities are generally larger that group velocities. Also
 verify that phase velocity curves usually do not have minima, while group
 velocities often have.</p>
-<p>Pick group and phase velocities automatically (<code>FTAN</code>)</p>
-<p>Prepare a 1-line parameter file called aftan.par as follows:</p>
+<h2 id="22-procesado-automatico-utilizando-ftan">2.2. Procesado automático utilizando <code>FTAN</code></h2>
+<p>Crear un archivo de parámetros llamado <code>aftan.par</code>(p.e. utilizando <code>gedit</code>) que contenga esta línea:</p>
 <pre><code>-1 1.0 5.0 2 100 20 1 0.5 0.2 2 COR_ARAC.IG._MVO.PM._ZZ_S
 </code></pre>
 <p>Explain meaning of parameters.</p>
 <p>Verify that the reference phase velocity dispersion file <code>avg_phvel.dat</code> is present. Look at its contents.</p>
-<p>Run automatic FTAN code:</p>
+<p>El programa que lleva a cabo el análisis <code>FTAN</code> de forma automática se llama <code>aftani_c_pgl</code> y se ejecuta
+de la siguiente forma:</p>
 <pre><code>$ aftani_c_pgl aftan.par
 </code></pre>
 <p>Look at the output files. Plot them with:</p>
 <pre><code>$ plot_aftan_disp.sh COR_ARAC.IG._MVO.PM.
+$ gv COR_ARAC.IG._MVO.PM..ps
 </code></pre>
+<p><img alt="cor_manual_auto" src="../cor_manual_auto.png" /></p>
 <p>Devise a method to process all the cross correlations in the current directory.</p>
               
             </div>
