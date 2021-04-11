@@ -1,15 +1,29 @@
 # 2. Procesado de correlaciones de ruido ambiente
 
-Working directory:
+En este ejercicio realizaremos medidas de velocidad de fase y de grupo
+utilizando un método manual (`do_mft`) y un método automático.
+
+
+## 2.1. Procesado manual con `do_mft`
+
+La medida de curvas de dispersión para correlaciones de ruido ambiente con
+`do_mft` es igual a la medida para registros de terremotos, excepto que,
+al conocer la fuente de la correlación (fuerza impulsiva vertical) podemos
+medir también la velocidad de fase (y no solo la de grupo como en el caso
+de los terremotos).
+
+Ir al directorio que contiene los archivos con las correlaciones de ruido ambiente:
 
     $ cd 
     $ cd exercises/correlations
+    $ ls                                    # ver el contenido del directorio
 
-Pick group and phase velocities manually (only vertical components available):
+Para seleccionar las velocidades de fase y de grupo de las correlaciones
+de forma manual, ejecutar `do_mft` con las siguientes opciones:
 
     $ do_mft -G -IG *_S
 
-Plot results:
+Para visualizar los resultados:
 
     $ plot_aftan_disp.sh COR_ARAC.IG._MVO.PM. (prefix of dsp and phv files)
 

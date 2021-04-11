@@ -37,7 +37,8 @@ archivo `course.ova` y siguiendo los siguientes pasos:
    ![virtual_machine](virtual_machine.png)
 7. Una vez inicada la máquina virtual, es conveniente instalar las `Guest Additions`. Ir al menú
    `Devices > Insert Guest Additions CD Image...`. Esto montará un CD virtual que ejecutará 
-   automaticamente la instalación de las `Guest Additions`. Una vez se hayan instalado, expulsar
+   automaticamente la instalación de las `Guest Additions`. Para la instalación pedirá el
+   password de administrador de la máquina virtual, que es **seismo**. Una vez se hayan instalado, expulsar
    el CD y reiniciar la máquina virtual. La instalación solo ha de realizarse una vez.
 8. Si la máquina virtual no ha arrancado correctamente o reacciona muy lentamente, mirad la 
    sección **Posibles problemas** al final de esta página.
