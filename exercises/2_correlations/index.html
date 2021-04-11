@@ -78,6 +78,8 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">2. Correlaciones de ruido</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#21-procesado-manual-con-do_mft">2.1. Procesado manual con do_mft</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../3_dispersion/">3. Modelos de velocidad</a>
@@ -126,14 +128,24 @@
             <div class="section">
               
                 <h1 id="2-procesado-de-correlaciones-de-ruido-ambiente">2. Procesado de correlaciones de ruido ambiente</h1>
-<p>Working directory:</p>
+<p>En este ejercicio realizaremos medidas de velocidad de fase y de grupo
+utilizando un método manual (<code>do_mft</code>) y un método automático.</p>
+<h2 id="21-procesado-manual-con-do_mft">2.1. Procesado manual con <code>do_mft</code></h2>
+<p>La medida de curvas de dispersión para correlaciones de ruido ambiente con
+<code>do_mft</code> es igual a la medida para registros de terremotos, excepto que,
+al conocer la fuente de la correlación (fuerza impulsiva vertical) podemos
+medir también la velocidad de fase (y no solo la de grupo como en el caso
+de los terremotos).</p>
+<p>Ir al directorio que contiene los archivos con las correlaciones de ruido ambiente:</p>
 <pre><code>$ cd 
 $ cd exercises/correlations
+$ ls                                    # ver el contenido del directorio
 </code></pre>
-<p>Pick group and phase velocities manually (only vertical components available):</p>
+<p>Para seleccionar las velocidades de fase y de grupo de las correlaciones
+de forma manual, ejecutar <code>do_mft</code> con las siguientes opciones:</p>
 <pre><code>$ do_mft -G -IG *_S
 </code></pre>
-<p>Plot results:</p>
+<p>Para visualizar los resultados:</p>
 <pre><code>$ plot_aftan_disp.sh COR_ARAC.IG._MVO.PM. (prefix of dsp and phv files)
 </code></pre>
 <p>Verify that phase velocities are generally larger that group velocities. Also

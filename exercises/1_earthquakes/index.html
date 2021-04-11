@@ -76,9 +76,9 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">1. Medidas de dispersión</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#11-observation-of-surface-waves-and-sac-basics">1.1 Observation of surface waves and SAC basics</a>
+    <li class="toctree-l2"><a class="reference internal" href="#11-observacion-de-ondas-superficiales-y-fundamentos-de-sac">1.1. Observación de ondas superficiales y fundamentos de SAC</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#2-measure-group-velocity-from-earthquakes">2. Measure group velocity from earthquakes</a>
+    <li class="toctree-l2"><a class="reference internal" href="#12-medida-de-velocidad-de-grupo-de-terremotos">1.2. Medida de velocidad de grupo de terremotos</a>
     </li>
     </ul>
                     </li>
@@ -130,41 +130,50 @@
             <div class="section">
               
                 <h1 id="1-medidas-de-dispersion-de-ondas-superficiales-de-terremotos">1. Medidas de dispersión de ondas superficiales de terremotos</h1>
-<h2 id="11-observation-of-surface-waves-and-sac-basics">1.1 Observation of surface waves and SAC basics</h2>
-<p>Go to working directory <code>~/exercises/earthquake</code>, launch <code>SAC</code> and run the following commands:</p>
-<pre><code>$ cd 
-$ cd exercises/earthquake           # use tab completion
-$ sac
-SAC &gt; r GUD*
-SAC &gt; qdp off
-SAC &gt; p1
-SAC &gt; rmean
-SAC &gt; taper
-SAC &gt; lowpass co .1 n 3 p 2     # search meaning in SAC manual
-SAC &gt; ppk bell off              # use “x” and “o” to zoom in and out
-SAC &gt; ...
-SAC&gt; r ESBBESBHZ ESBBESBHR
+<h2 id="11-observacion-de-ondas-superficiales-y-fundamentos-de-sac">1.1. Observación de ondas superficiales y fundamentos de SAC</h2>
+<p>En primer lugar utilizaremos el programs <code>SAC</code> (Seismic Analysis Code) para visualizar
+sismogramas e identificar las ondas superficiales. El manual detallado de <code>SAC</code> se
+encuentra en este <a href="https://ds.iris.edu/files/sac-manual/">enlace</a>.</p>
+<p>Los sismogramas de este ejercicio se encuentran en el directorio <code>~/exercises/earthquake</code>
+(el símbolo <code>~</code> significa <strong>home directory</strong>, en nuestro caso <code>/home/seismo</code>)</p>
+<pre><code>$ cd                                # ir al home directory
+$ cd exercises/earthquake           # presionar TAB para completar el nombre
+</code></pre>
+<p>Lanzar el program <code>SAC</code> y ejecutar los siguientes comandos:</p>
+<pre><code>$ sac
+SAC &gt; r GUD*                    # lee los archivos para la estación GUD
+SAC &gt; lh columns 2 delta baz    # listar los valores de la distacia epicentral y backazimuth 
+SAC &gt; qdp off                   # no utilizar baja resolución en los plots
+SAC &gt; p1                        # dibujar los datos
+SAC &gt; rmean                     # quitar la media
+SAC &gt; taper                     # aplicar un taper antes de filtrar
+SAC &gt; lowpass co .1 n 3 p 2     # filtro pasa bajas frecuencias
+SAC &gt; ppk bell off              # plot and pick: usar “x” y “o” para hacer y deshacer zoom
+SAC &gt; ...                       # practicar con ppk y presionar "q" para volver al programa
+SAC&gt; r ESBBESBHZ ESBBESBHR      # leer solo las componentes vertical y radial
 SAC&gt; rmean
 SAC&gt; taper
-SAC&gt; lp                 # commands remember parameters
+SAC&gt; lp                         # en SAC los comandos recuerdan los parámetros anteriores
 SAC&gt; p1
-SAC&gt; xlim 130 170
+SAC&gt; xlim 130 170               # limitar el rango de tiempo a dibujar
 SAC&gt; p1
-SAC&gt; ppm                    # plots particle motion
-SAC &gt; q
+SAC&gt; ppm                        # dibujar el movimiento de la partícula
+SAC &gt; q                         # salir de SAC
 $
 </code></pre>
 <p>Use cursor to check that Rayleigh wave is elliptically polarized.
 Use ppm command to see particle motion in ZR plane.</p>
-<p><a href="https://ds.iris.edu/files/sac-manual/">SAC manual</a></p>
-<p>Repeat for other stations.</p>
-<p>Other commands to check: <code>lh</code>, <code>bp</code>, <code>fft</code>, <code>psp</code>, <code>sss</code>, <code>sort</code>.</p>
-<h2 id="2-measure-group-velocity-from-earthquakes">2. Measure group velocity from earthquakes</h2>
-<p>Working directory:</p>
+<p>Repetir este procesado con otras estaciones.</p>
+<p>Otros comandos útiles de <code>SAC</code> son: <code>bp</code>, <code>fft</code>, <code>psp</code>. Buscarlos en el manual y
+aplicarlos a alguon de los datos en este directorio.</p>
+<h2 id="12-medida-de-velocidad-de-grupo-de-terremotos">1.2. Medida de velocidad de grupo de terremotos</h2>
+<p>Ir al direcorio de trabajo:</p>
 <pre><code>$ cd 
 $ cd exercises/earthquake
 </code></pre>
-<p>First try simple approach: filtering and envelope:</p>
+<p>En primer lugar probaremos un método sencillo, que es el de filtrar el sismograma
+en la banda de frecuencias (periodos) de interés, y calcular el máximo de la
+envolvente del sismograma filtrado:</p>
 <pre><code>$ sac
 SAC&gt; r GUD*
 GUDESHHR GUDESHHT GUDESHHZ
@@ -174,27 +183,85 @@ SAC&gt; xlim 100 300
 SAC&gt; p1
 SAC&gt; rmean
 SAC&gt; taper
-SAC&gt; bp co .09 .11 n 3 p 2
+SAC&gt; bp co .09 .11 n 3 p 2        # filtrar en una banda de frecuencia en torno a 0.1 Hz (10 segundos)
 SAC&gt; p1
 SAC&gt; envelope
 SAC&gt; p1
-SAC&gt; ppk bell off
+SAC&gt; ppk bell off                 # colocar el cursor en el máximo de la envolvente y leer el tiempo
 </code></pre>
-<p>Select peak of envelope. Calculate group velocity <script type="math/tex">U</script> by simply doing: <script type="math/tex">U = \Delta / t</script>
-where <script type="math/tex">\Delta</script> is the epicentral distance, and <script type="math/tex">t</script> is arrival time.</p>
-<p>Repeat for other periods. Note the artifacts when the filter is too narrow.</p>
-<p>Then try with <code>do_mft</code>:</p>
+<p>Después de aplicar el filtro y calcular la envolvente debería obtenerse una figura como esta:</p>
+<p><img alt="envelope" src="../envelope.png" /></p>
+<p>Utilizar el cursor para leer el tiempo del máximo de la envolvente. La medida en la componente
+transversal dará la velocidad de grupo de la onda Love, y la medida en la vertical (o radial)
+dará la velocidad de la onda Rayleigh. La velocidad de grupo <script type="math/tex">U</script> se calcula simplemente haciendo:
+<script type="math/tex">U = \Delta / t</script> donde <script type="math/tex">\Delta</script> es la distancia epicentral (variable <code>delta</code> de la cabecera
+del archivo <code>SAC</code> y <script type="math/tex">t</script> es el tiempo de llegada medido del máximo de la envolvente.</p>
+<p>Repetir este proceso para otros periodos (p.e. 5 segundos). Si la banda de frecuencia del filtro
+es muy estrecha pueden aparecer artefactos en la señal filtrada</p>
+<p>En segundo lugar probaremos en método FTAN (frequency-time analysis), en concreto la implementación
+de este método en el programa <code>do_mft</code> de los Computer Programs in Seismology.</p>
+<p>Estando en el directorio de trabajo <code>~/exercises/earthquake</code> introducir:</p>
 <pre><code>$ do_mft -G GUD*
 </code></pre>
-<p>Compare results obtained manually with the output files <code>*.dsp</code></p>
-<p>Process the entire event:</p>
-<pre><code>$ do_mft -G *T
-$ do_mft -G *Z
-$ do_mft -G *R
+<p>Debería aparecer una pantalla como esta, en la que se puede seleccionar el sismograma que se va
+a analizar:</p>
+<p><img alt="do_mft_list" src="../do_mft_list.png" /></p>
+<p>Seleccionar uno de los sismogramas, p.e. GUD HHZ. A continuación aparecerá una pantalla con 
+información del sismograma:</p>
+<p><img alt="do_mft_info" src="../do_mft_info.png" /></p>
+<p>Inicialmente las unidades del sismograma aparecen como <code>Unknown</code>. Haciendo click sobre el botón
+azul <code>Units</code> se pueden seleccionar las unidades, que en nuestro caso son nanometros por segundo (nm/s).
+Una vez estén seleccionadas las unidades, hacer click en el botón <code>Do MFT</code>.</p>
+<p>Entonces aparecerá la ventana en la que se pueden seleccionar los parámetros para el
+frequency-time analysis (o también denominado multiple filter analysis):</p>
+<p><img alt="do_mft_parameters" src="../do_mft_parameters.png" /></p>
+<p>Inicialmente el tipo de ondas (parámetro <code>Type</code>) aparece como <code>UNKNOWN</code>. Haciendo click sobre
+el botón <code>Type</code> se puede cambiar el tipo de onda a LOVE o RAYLEIGH, según el sismograma que
+se haya seleccionando. Una vez seleccionado el tipo de onda, hacer click en el botón <code>Do MFT</code>
+y aparecerá el resultado del análisis FTAN:</p>
+<p><img alt="do_mft_ftan" src="../do_mft_ftan.png" /></p>
+<p>En el panel izquierdo se muestra el máximo de la amplitud espectral para cada periodo, y en 
+el panel derecho la distribución de la energía en función de la frecuencia (periodo) y del
+tiempo (velocidad). En este caso es fácil indetificar la energía asociado al modo fundamental
+de la onda Rayleigh entre 3 y 30 segundos. El máximo de la amplitud espectral para cada
+periodo viene indicado con símbolos negros: cuadrados para el máximo absoluto y otros símbolos
+para máximos relativos.</p>
+<p>La selección de los puntos de la curva de velocidad de grupo ha de hacerse de forma manual.
+En primer lugar hacer click en el botón <code>Auto</code> y seleccionar <code>Fund</code> (modo fundamental).
+A continuación hacer click en el primer punto que se quiera seleccionar, arrastrar el
+cursor pasando por encima de los siguientes puntos a seleccionar y hacer click otra vez.
+Los puntos seleccionados pasarán a color blanco. Repetir tantas veces como sea necesario
+hasta seleccionar todos los puntos deseados. Si se quiere seleccionar o borrar un punto 
+indivudialmente, hacer click en el botón <code>Pick</code> y luego sobre el punto. Si estaba seleccionado
+(color blanco) pasará a no estar seleccionado (color negro) y viceversa.</p>
+<p>Una vez seleccionados los puntos de la curva de dispersión hacer clic en <code>Exit</code> y 
+pulsar si queréis guardar o no la curva de dispersión. Si decidís salvarla, creará
+un archivo con el mismo nombre que el archivo del sismograma más la extensión <code>.dsp</code>.
+Así, para el sismograma en <code>GUDESHHZ</code> creará el archivo <code>GUDESHHZ.dsp</code>.</p>
+<p>Podéis ver el contenido de este archivo en pantalla haciendo:</p>
+<pre><code>$ cat GUDESHHZ.dsp
+</code></pre>
+<p>o bien editarlo con un editor como <code>gedit</code>:</p>
+<pre><code>$ gedit GUDESHHZ.dsp
+</code></pre>
+<p><img alt="gedit" src="../gedit.png" /></p>
+<p>Las columnas importantes de este archivo son:</p>
+<ol>
+<li>MFT96: nombre del programa que ha generado el archivo</li>
+<li>Tipo de onda (R o L)</li>
+<li>Tipo de medida: U = velocidad de grupo, C = velocidad de fase</li>
+<li>Modo: 0 = modo fundamental</li>
+<li>Periodo de la medida (en segundos)</li>
+<li>Velocidad de la medida (en km/s)</li>
+</ol>
+<p>En este caso al velocidad de grupo medida para 10 segundos es de 2.69 km/s. Comparar este valor
+con el obtenido utilizando el máximo de la envolvente.</p>
+<p>Para procesar todos los archivos en un directorio:</p>
+<pre><code>$ do_mft -G *T       # componente transversal para medir disperión de ondas Love
+$ do_mft -G *Z       # componente vertical para medir dispersión de ondas Rayleigh
+$ do_mft -G *R       # componente radial; debería dar la misma medida que utilizando la vertical
 </code></pre>
 <p>Check that the measurements on the vertical and radial component are identical.</p>
-<p>Plot results</p>
-<p><strong>Need file to plot dsp files.</strong></p>
               
             </div>
           </div>
