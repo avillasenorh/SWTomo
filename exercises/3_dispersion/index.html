@@ -125,28 +125,106 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="3-calcular-la-dispersion-de-un-modelo-de-velocidad">3. Calcular la dispersión de un modelo de velocidad</h1>
-<p>Working directory:</p>
+                <h1 id="3-calcular-las-curvas-de-dispersion-para-un-modelo-de-velocidad">3. Calcular las curvas de dispersión para un modelo de velocidad</h1>
+<p>Ir al directorio de trabajo para este ejercicio:</p>
 <pre><code>$ cd
 $ cd exercises/dispersion
-$ dispersion.sh ak135.mod
-$ gv L.ak135.mod.ps
+$ ls *.mod                     # muestra los archivos con extensión .mod
+</code></pre>
+<p>En el directorio se encuentra un archivo llamado <code>ak135.mod</code> que contiene la
+descripción del modelo de tierra <code>ak135</code>:</p>
+<pre><code>MODEL.01
+Model after     n iterations
+ISOTROPIC
+KGS
+FLAT EARTH
+1-D
+CONSTANT VELOCITY
+LINE08
+LINE09
+LINE10
+LINE11
+      H(KM)   VP(KM/S)   VS(KM/S) RHO(GM/CC)         QP         QS       ETAP       ETAS      FREFP      FREFS
+     5.0000     5.8000     3.4600     2.7200   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     5.8000     3.4600     2.7200   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     5.8000     3.4600     2.7200   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     5.8000     3.4600     2.7200   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     6.5000     3.8500     2.9200   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     6.5000     3.8500     2.9200   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     6.5000     3.8500     2.9200   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     5.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+     0.0000     8.0400     4.4800     3.3198   0.00       0.00       0.00       0.00       1.00       1.00
+</code></pre>
+
+<p>Las 11 primeras líneas del archivo son comentarios y la línea número 12 contiene la cabecera de los
+valores que se listan a continuación. El significado de las columnas relevantes es:</p>
+<ol>
+<li>espesor de la capa en km (atención, es el espesor, no la profundidad de la base de la capa!)</li>
+<li>velocidad de la onda P (km/s)</li>
+<li>velocidad de la onda S (km/s)</li>
+<li>densidad (gramos/cm3)</li>
+</ol>
+<p>Para generar las curvas de dispersión que corresponden a este modelo de velocidades podemos
+utilizar el script <code>dispersion.sh</code>:</p>
+<pre><code>$ dispersion.sh ak135.mod
+</code></pre>
+<p>El script genera 2 archivos PostScript que podemos visualizar utilizando gv:</p>
+<pre><code>$ gv L.ak135.mod.ps
 $ gv R.ak135.mod.ps
 </code></pre>
-<p>Test other models:</p>
-<ul>
-<li>Split first layer of 5.0 km in two of 2.5 km. Assign to first layer the properties of water (Vp = 1.5 km/s)</li>
-<li>Same but assign to first layer the properties of sediments. Use e.g. Vp/Vs = 1.8. Check influence of density</li>
-<li>Vary Moho depth from 25 to 70 km and see effect on dispersion curves</li>
+<p>Esta es la figura que muestra la velocidad de fase (curva verde) y velocidad de grupo
+(curva roja) para las ondas Love:</p>
+<p><img alt="ak135_Love" src="../ak135_Love.png" /></p>
+<p>Y esta es la figura que muestra la velocidad de fase (curva verde) y velocidad de grupo
+(curva roja) para las ondas Rayleigh:</p>
+<p><img alt="ak135_Rayleigh" src="../ak135_Rayleigh.png" /></p>
+<p>Utilizando este script podemos obtener las curvas de dispersión para otros modelos de tierra.</p>
+<p>Por ejemplo, para obtener las curvas de dispersión de un modelo oceánico (con capa de agua)
+se pueden seguir los siguentes pasos:</p>
+<ol>
+<li>copiar el archivo <code>ak135.mod</code> como <code>ocean.mod</code> (<code>$ cp ak135.mod ocean.mod</code>)</li>
+<li>editar <code>ocean.mod</code>:<ul>
+<li>duplicar la primera línea del modelo (espesor = 5 km) y convertirla
+  en dos líneas con espesor de 2.5 km</li>
+<li>cambiar las propiedades de la primera capa por las propiedades del agua:
+  Vp = 1.5 km/s, Vs = 0.0 km/s, densidad = 1.0 gramo/cm3</li>
 </ul>
-<p>Hint. Copy ak135.mod with another name, and edit new file:</p>
-<pre><code>$ cp ak135.mod ocean.mod            # edit ocean.mod
-$ cp ak135.mod sediments.mod
+</li>
+<li>correr el script: <code>$ dispersion.sh ak135.mod</code></li>
+<li>visualizar los resultados: <code>$ gv R.ocean.mod.ps</code></li>
+</ol>
+<p>El resultado para ondas Rayleigh debe ser similar a la siguiente figura:</p>
+<p><img alt="ocean_Rayleigh" src="../ocean_Rayleigh.png" /></p>
+<p>Siguiendo este ejemplo probar otros modelos:</p>
+<ul>
+<li>Utilizar como base el modelo ak135 e introducir una primera capa con sedimentos
+  (una velocidad típica de sedimentos puede ser 2 km/; probad diferentes espersores
+  de la capa de sedimentos y ver el efecto en las curvas de dispersión)</li>
+<li>Variar la profundidad del Moho entre 25 y 70 km y ver el efecto en las curvas de
+  dispersión (en <code>ak135.mod</code> el Moho es la discontinuidad entre las capas 7 y 8, donde
+  la velocidad de la onda P pasa de 6.5 a 8.04 km/s.</li>
+</ul>
+<p>Para hacer estas pruebas, copiar el archivo <code>ak135.mod</code> con otro nombre y editar los
+nuevos archivos:</p>
+<pre><code>$ cp ak135.mod sediments.mod
 $ cp ak135.mod moho25.mod
-$ …
+$ ... 
 $ cp ak135.mod moho70.mod
+
+
+$ dispersion.sh sediments.mod
+$ dispersion.sh moho25.mod
+$ ... 
+$ dispersion.sh moho70.mod
 </code></pre>
-<p>Compare different dispersion curves.</p>
               
             </div>
           </div>
