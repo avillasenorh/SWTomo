@@ -23,7 +23,8 @@ de forma manual, ejecutar `do_mft` con las siguientes opciones:
 
     $ do_mft -G -IG *_S
 
-Igual que con terremotos pero con una opción adicional: `PhVel`
+La pantalla que aparece es igual a la que obteníamos en el caso de terremotos,
+excepto que aprarece una opción adicional: `PhVel`
 
 ![do_mft_corr_ftan](do_mft_corr_ftan.png)
 
@@ -35,12 +36,16 @@ Cuando esté seleccionada hacer click en `PhVel`. Entonces aparecerá la pantall
 En el panel de la derecha se muestra de nuevo el análisis FTAN, y en el de la
 izquierda las posibles curvas de velocidad de fase. Hay que seleccionar la curva
 que tenga unos valores de la velocidad similares (un poco superiores) a la curva
-de velocidad de grupo. Esto se hace de la misma forma que con la velocidad de
+de velocidad de grupo y/o unos valores razonables para periodos largos.
+La selección se hace de la misma forma que con la velocidad de
 grupo, pulsando primero `Auto` y después haciendo click sobre los puntos que se
 quieren seleccionar. Los puntos seleccionados cambian a color blanco, como se 
 muestra en la siguiente figura:
 
 ![do_mft_corr_phase_selected](do_mft_corr_phase_selected.png)
+
+También cambian a color blanco los puntos equivalentes el la curva de velocidad
+de grupo.
 
 Para salvar la curva de velocidad de fase hacer click en `Save`. Esto generará 
 un archivo con el mismo nombre que el archivo del sismograma, añadiéndole la
@@ -64,9 +69,12 @@ y generará un archivo en formato PostScript `COR_ARAC.IG._MVO.PM..ps` que puede
 
 ![cor_manual](cor_manual.png)
 
-La línea continua roja es la velocidad de fase y la línea discontinua roja la velocidad de grupo.
+La curva obtenida debe ser similar a la figura previa. La línea continua roja corresponde a
+la velocidad de fase de la onda Rayleigh y la línea discontinua roja la velocidad de grupo.
 
-Verify that phase velocities are generally larger that group velocities. Also
+Debe observarse que la velocidad de grupo es inferior a la velocidad de fase. La velocidad de
+fase en general será creciente con el periodo, mientras que la velocidad de grupo puede 
+decrecer y presentar máximos y/o mínimos.
 verify that phase velocity curves usually do not have minima, while group
 velocities often have.
 
@@ -76,11 +84,26 @@ Crear un archivo de parámetros llamado `aftan.par`(p.e. utilizando `gedit`) que
 
     -1 1.0 5.0 2 100 20 1 0.5 0.2 2 COR_ARAC.IG._MVO.PM._ZZ_S
 
-Explain meaning of parameters.
+El significado de los valores en las diferentes columnas es el siguiente:
+
+1. valor interno (ha de ser siempre -1)
+2. velocidad mínima (km/s)
+3. velocidad máxima (km/s)
+4. periodo mínimo (segundos)
+5. periodo máximo (segundos)
+6. umbral (threshold). Normalmente 10 ó 20
+7. factor para el parámetro de filtrado
+8. factor para el taper a la izquierda del sismograma
+9. signal-to-noise ratio para el phase-matched filter
+10. factor para determinar la ventana del phase-matched filter
+11. nombre del archivo con el sismograma/correlación a procesar
 
 Además del archivo de parámetros `aftan.par` también es necesario un archivo que contenga
-una curva de velocidad de fase de referencia (promedio). El archivo ha de tener el nombre `avg_phvel.dat`
-y su contenido es simplemente una tabla periodo (s) versus velocidad de fase (Rayleigh o Love):
+una curva de velocidad de fase de referencia (promedio). Este archivo se utiliza para hacer
+el phase-unwrapping a periodos largos y poder decidir la curva de velocidad de fase correcta.
+El archivo ha de tener el nombre `avg_phvel.dat`
+y su contenido es simplemente una tabla con dos columnas:
+periodo (s) versus velocidad de fase (Rayleigh o Love):
 
     25   3.67411208
     29   3.731354
@@ -135,12 +158,30 @@ tener el siguiente ascpecto:
   31    96.5152    93.4423       3.6997       3.8459      63.7319  113.398
 ```
 
-Look at the output files. Plot them with:
+El significado de las columnas relevantes es:
+
+1. número de medida
+2. periodo nominal de la medida (segundos)
+3. periodo instantáneo de la medida (segundos); este es el valor que nos interesa
+4. velocidad de grupo (km/s)
+5. velocidad de fase (km/s)
+
+El archivo resultante `COR_ARAC.IG._MVO.PM._ZZ_S_2_DISP.1` puede dibujarse también
+con el mismo script que utilizamos para las medidas manuales con `do_mft`:
 
     $ plot_aftan_disp.sh COR_ARAC.IG._MVO.PM.
     $ gv COR_ARAC.IG._MVO.PM..ps
 
+Si para el mismo par de estaciones existen medidas hechas con `do_mft` y con 
+`aftani_c_pgl` se superpondrán en el mismo dibujo:
+
 ![cor_manual_auto](cor_manual_auto.png)
 
-Devise a method to process all the cross correlations in the current directory.
+En la gráfica superior las curvas en marrón corresponden a las medidas obtenidas
+con el método automático `aftani_c_pgl`, y las rojas con el método manual `do_mft`.
+En ambos casos las líneas continuas corresponden a velocidad de fase, y las
+discontinuas a velocidad de grupo.
+
+Ejercicio: Cómo haríais para procesar todos los archivos de correlación
+en el directorio de trabajo (455 archivos).
 
