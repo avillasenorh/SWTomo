@@ -27,7 +27,7 @@ Lanzar el program `SAC` y ejecutar los siguientes comandos:
     SAC> r ESBBESBHZ ESBBESBHR      # leer solo las componentes vertical y radial
     SAC> rmean
     SAC> taper
-    SAC> lpowpass                   # en SAC los comandos recuerdan los parámetros anteriores
+    SAC> lowpass                    # en SAC los comandos recuerdan los parámetros anteriores
     SAC> ppk                        # usar el cursor para comprobar que las componentes Z y T están desfasadas
     SAC> xlim 130 170               # limitar el rango de tiempo a dibujar
     SAC> p1

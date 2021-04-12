@@ -78,12 +78,62 @@ Crear un archivo de parámetros llamado `aftan.par`(p.e. utilizando `gedit`) que
 
 Explain meaning of parameters.
 
-Verify that the reference phase velocity dispersion file `avg_phvel.dat` is present. Look at its contents.
+Además del archivo de parámetros `aftan.par` también es necesario un archivo que contenga
+una curva de velocidad de fase de referencia (promedio). El archivo ha de tener el nombre `avg_phvel.dat`
+y su contenido es simplemente una tabla periodo (s) versus velocidad de fase (Rayleigh o Love):
+
+    25   3.67411208
+    29   3.731354
+    33   3.7900126
+    40   3.83514428
+    50   3.85978866
+    66   3.89791131
+    83   3.94684219
+    100  4.00932217
 
 El programa que lleva a cabo el análisis `FTAN` de forma automática se llama `aftani_c_pgl` y se ejecuta
 de la siguiente forma:
 
     $ aftani_c_pgl aftan.par
+
+El programa genera muchos archivos de salida por cada sismograma. El ouptut final está en el archivo
+con el sufijo `_2_DISP.1`. En particular, el archivo `COR_ARAC.IG._MVO.PM._ZZ_S_2_DISP.1` debería
+tener el siguiente ascpecto:
+
+```
+   0     2.4990     3.0738       3.0559       3.1335      89.2118   26.546
+   1     2.8116     3.1951       3.0545       3.1366      95.1781   18.675
+   2     3.1634     3.3792       3.0490       3.1416      98.6959   21.576
+   3     3.5591     3.6418       3.0442       3.1492     100.0007   43.248
+   4     4.0043     3.9751       3.0510       3.1592      99.5837   48.041
+   5     4.5052     4.4000       3.0775       3.1703      97.9055   38.064
+   6     5.0687     4.9757       3.1094       3.1813      95.7282   26.265
+   7     5.7028     5.6677       3.1311       3.1901      94.0639   34.596
+   8     6.4162     6.4176       3.1042       3.1983      92.8465  112.891
+   9     7.2188     7.4175       3.0536       3.2166      92.2072   16.057
+  10     8.1218     8.7391       3.0346       3.2492      93.0338   13.191
+  11     9.1377     9.9074       3.0261       3.2804      95.5471   98.594
+  12    10.2808    10.8113       3.0117       3.3062      97.7322  102.493
+  13    11.5668    11.8363       3.0007       3.3376      98.5755   91.330
+  14    13.0137    13.1025       3.0022       3.3784      98.3737  184.567
+  15    14.6417    14.5310       3.0122       3.4247      97.4745  177.030
+  16    16.4732    16.0903       3.0118       3.4755      95.8104   78.610
+  17    18.5339    17.9128       2.9961       3.5380      93.3626   70.694
+  18    20.8523    20.1754       2.9984       3.6215      90.5481  168.184
+  19    23.4607    22.9816       3.0772       3.7260      88.0634  158.935
+  20    26.3955    26.2221       3.2712       3.8283      86.3873   60.217
+  21    29.6973    29.5927       3.5260       3.8993      85.2403  153.496
+  22    33.4122    33.1429       3.7558       3.9379      84.0305  151.759
+  23    37.5918    37.0773       3.9421       3.9523      82.5334  148.996
+  24    42.2942    41.5040       4.0807       3.9475      80.7447  148.715
+  25    47.5848    46.5026       4.1547       3.9284      78.7052  149.816
+  26    53.5373    52.1546       4.1597       3.9017      76.4666  141.282
+  27    60.2344    58.5435       4.1048       3.8736      74.0783  135.621
+  28    67.7692    65.7614       4.0021       3.8502      71.5822  128.444
+  29    76.2465    73.9076       3.8824       3.8368      69.0113  120.928
+  30    85.7843    83.0915       3.7825       3.8357      66.3888  116.806
+  31    96.5152    93.4423       3.6997       3.8459      63.7319  113.398
+```
 
 Look at the output files. Plot them with:
 
