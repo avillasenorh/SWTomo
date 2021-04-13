@@ -82,7 +82,9 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">4. Tomografía</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#41-visualize-dispersion-measurements-preparation-for-tomography">4.1. Visualize dispersion measurements. Preparation for tomography</a>
+    <li class="toctree-l2"><a class="reference internal" href="#41-visualizar-las-medidas-de-dispersion">4.1. Visualizar las medidas de dispersión</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#42-preparar-los-datos-para-la-tomografia">4.2. Preparar los datos para la tomografía</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#42-surface-wave-tomography-2d">4.2. Surface wave tomography (2D)</a>
     </li>
@@ -130,33 +132,104 @@
             <div class="section">
               
                 <h1 id="4-tomografia-2d-de-ondas-superficiales">4. Tomografía 2D de ondas superficiales</h1>
-<h2 id="41-visualize-dispersion-measurements-preparation-for-tomography">4.1. Visualize dispersion measurements. Preparation for tomography</h2>
-<p>Working directory:</p>
+<p>Para este ejercicio utilizaremos unas medidas de dispersión (velocidad de grupo y
+de fase de ondas Love y Rayleigh) obtenidas a partir de correlaciones de
+ruido ambiente entre estaciones localizadas en el oriente de Venezuela.</p>
+<h2 id="41-visualizar-las-medidas-de-dispersion">4.1. Visualizar las medidas de dispersión</h2>
+<p>Ir al directorio donde se encuentran los archivos con las medidas de dispersión.
+Son medidas hechas manualmente con <code>do_mft</code> por tanto son archivos con extensión
+<code>.dsp</code> para las medidad de velocidad de grupo, y <code>.phv</code> para las medidas de velocidad
+de fase:</p>
 <pre><code>$ cd
-$ plot_aftan_disp.sh prefix
+$ cd exercises/measurements
+$ ls
 </code></pre>
-<p>Look at the contents of the dsp and phv files</p>
-<p>Devise a strategy to convert station pair measurements into files that contain dispersion measurements for a given period (with different files for group and phase velocities and Love and Rayleigh waves: RC, RU, LC, LU).</p>
-<p>Look at the contents of ~/scripts/get_mftdisp.sh. Run script:</p>
-<pre><code>$ get_mftdisp.sh
+<p>Podréis observar que hay correlaciones <code>ZZ</code> que contienen medidas de dispersión de ondas
+Rayleigh y correlaciones <code>TT</code> que contienen medidas de dispersion de ondas Love.</p>
+<p>En primer lugar podemos dibujar las medidas de dispersión obtenidas a partir
+de las correlaciones entre dos pares de estaciones. Por ejemplo, para 
+dibujar las medidas de dispersión de las correlaciones entre las estaciones MACP y SMPC introducir:</p>
+<pre><code>$ plot_aftan_disp.sh COR_MAPC.XT._SMPC.XT.
 </code></pre>
-<p>Check number of measurements for each file:</p>
+<p>Esto genera un archivo PostScript que se puede visualizar haciendo:</p>
+<pre><code>$ gv COR_MAPC.XT._SMPC.XT..ps
+</code></pre>
+<p>Se debería obtener una figura como esta:</p>
+<p><img alt="measurements" src="../measurements.png" /></p>
+<p>Las líneas verde corresponden a las ondas Love y las rojas a las ondas Rayleigh. Las
+líneas continuas son velocidades de fase y las discontinuas velocidades de grupo.</p>
+<p>Dibujar las medidas de dispersión para varios pares de estaciones y analizar si
+muestran el comportamiento esperado (velocidades de fase siempre crecientes y
+mayores que las velocidades de grupo, etc.)</p>
+<h2 id="42-preparar-los-datos-para-la-tomografia">4.2. Preparar los datos para la tomografía</h2>
+<p>De los archivos conteniendo medidas de dispersión para trayectorias entre estaciones,
+hemos de pasar a archivos que contengan velocidades de grupo y de fase para un solo periodo.
+Concretamente para cada periodo deberemos obtener 4 archivos: RC, RU, LC, LU.</p>
+<p>Esta reorganización de los datos la lleva a cabo el script <code>get_mftdisp.sh</code> que se encuentra
+el directorio <code>/home/seismo/scripts</code>. Ir a esa directorio, editar el archivo con <code>gedit</code> e intentar
+entender la secuencia de comandos.</p>
+<p>Para ejecutar el script, volver al directorio donde se encuentran las medidas de dispersión:</p>
+<pre><code>$ cd
+$ cd exercises/measurements
+$ get_mftdisp.sh
+</code></pre>
+<p>Este script genera varios archivos con la extensión <code>.dat</code>, uno para cada tipo de medida (grupo o fase),
+tipo de onda (Love o Rayleigh) y para cada periodo. El contenido del archivo <code>RU020.0_MFT.dat</code> debe ser
+similar a:</p>
+<p><img alt="datafiles" src="../datafiles.png" /></p>
+<p>El significado de las columnas más relevantes es:</p>
+<ol>
+<li>número de la medida</li>
+<li>latitud de la primera estación (fuente)</li>
+<li>longitud de la primera estación (fuente)</li>
+<li>latitud de la segunda estación (receptor)</li>
+<li>longitud de la segunda estación (receptor)</li>
+<li>velocidad (km/s). Para el archivo <code>RU020.0_MFT.dat</code> corresponderá
+   a la velocidad de grupo de la onda Rayleigh a 20 segundos</li>
+<li>archivo del que procede esta medida</li>
+</ol>
+<p>Es posible saber el número de medidas en cada archivo contando el número de líneas:</p>
 <pre><code>$ wc -l *.dat
 </code></pre>
-<p>Look at the contents of the dat files.</p>
 <h2 id="42-surface-wave-tomography-2d">4.2. Surface wave tomography (2D)</h2>
-<p>Working directory:</p>
+<p>Una vez generados los archivos <code>.dat</code> para cada periodo y tipo de velocidad y de onda,
+ya estamos en condiciones de hacer la tomografía 2D.</p>
+<p>Para ello ir al directorio de trabajo:</p>
 <pre><code>$ cd
 $ cd exercises/tomography/RC020.0
 </code></pre>
-<p>Look at contents of tomo.sh and run it:</p>
+<p>En este directorio se encuentran varios archivos:</p>
+<ul>
+<li><code>RC020.0.dat</code>: archivo con las medidas de dispersión (Rayleigh, fase, 20 segundos)</li>
+<li><code>contour.ctr</code>: archivo que define la zona geográfica a invertir</li>
+<li><code>tomo.sh</code>: script de <code>bash</code> para correr el programa de tomografía</li>
+<li><code>plot_map.sh</code>: script de <code>bash</code> para dibujar los resultados</li>
+<li><code>8%_panoply.cpt</code>: paleta de colores para dibujar los resultados</li>
+</ul>
+<p>Editar el archivo <code>tomo.sh</code> para ver los pasos requeridos para llevar a cabo la
+inversión tomográfica. Para ejecutarlo escribir simplemente:</p>
 <pre><code>$ tomo.sh
 </code></pre>
-<p>Plot results:</p>
+<p>Al terminar la ejecución el script escribe en pantalla un número que es el
+promedio de todas las medidas de velocidad en el archivo <code>.dat</code>. En este caso
+debería ser 3.36.</p>
+<p>Si el programa corre correctamente, deberá generar varios archivos con el prefijo
+<code>RC_1200_250_10_20.0</code>. El singificado de los números es:</p>
+<ul>
+<li>alfa: 1200 (sin dimensiones)</li>
+<li>sigma: 250 km</li>
+<li>beta: 10 (sin dimensiones)</li>
+<li>periodo: 20 segundos</li>
+</ul>
+<p>El archivo con la extensión <code>.1</code> contiene el mapa resultante
+de la tomografía.</p>
+<p>Para dibujar el resultado (mapa de velocidad de fase de ondas Rayleigh a 20 segundos)
+correr el script de dibujo y visualizar el archivo PostScript resultante con <code>gv</code>:</p>
 <pre><code>$ plot_map.sh RC_1200_250_10_20.0.1
 $ gv RC_1200_250_10_20.0.ps
 </code></pre>
-<p>Change values of alpha and sigma and see differences in results.</p>
+<p><img alt="venezuela_RC20" src="../venezuela_RC20.png" /></p>
+<p>Editar el archivo y cambiar los valores de los parámetros alfa y beta y dibujar los resultados.</p>
               
             </div>
           </div>
