@@ -76,7 +76,9 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#posibles-problemas">Posibles problemas:</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#utilizando-windows">Utilizando Windows</a>
+    <li class="toctree-l3"><a class="reference internal" href="#utilizando-windows-virtualbox-no-puede-crear-la-maquina-virtual">Utilizando Windows: VirtualBox no puede crear la máquina virtual</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#utilizando-windows-virtualbox-crea-la-maquina-virtual-pero-al-arrancar-da-un-error">Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#utilizando-macos">Utilizando macOS</a>
     </li>
@@ -86,9 +88,9 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../1_earthquakes/">1. Medidas de dispersión</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../2_correlations/">2. Correlaciones de ruido</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../2_dispersion/">2. Modelos de velocidad</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../3_dispersion/">3. Modelos de velocidad</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../3_correlations/">3. Correlaciones de ruido</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../4_tomography/">4. Tomografía</a>
                     </li>
@@ -194,7 +196,21 @@ borrar el archivo <code>course.ova</code> para ahorrar espacion en disco.</p>
 <p>A pesar de que <code>VirtualBox</code> es posiblemente el programa más extendido para crear máquinas
 virtuales con distintos sistemas operativos, es posible que os encontréis con algunos
 problemas al correr la máquina virtual. Los problemas más comunes son:</p>
-<h3 id="utilizando-windows">Utilizando Windows</h3>
+<h3 id="utilizando-windows-virtualbox-no-puede-crear-la-maquina-virtual">Utilizando Windows: VirtualBox no puede crear la máquina virtual</h3>
+<p>Al abrir el archivo <code>course.ova</code> con <code>File &gt; Import Appliance</code> da un error y no crea la
+máquina virtual.</p>
+<p>Esto puede deberse a que el archivo <code>.ova</code> no se haya descargado correctamente y esté corrompido.
+Los archivos <code>.ova</code> son en realidad archivos <code>.tar</code>, así que pueden descomprimirse utilizando
+cualquier programa que pueda leer archivos <code>.tar</code>. Para ello cambiar el nombre del archivo
+<code>course.ova</code> a <code>course.tar</code>. Hacer doble-click sobre <code>course.tar</code> y comprobar si se descomprime
+correctamente. Si esto da algún error significa que probablemente el archivo está corrompido,
+así que habría que descargarlo de nuevo.</p>
+<p>Si funciona la descompresión, se debería haber creado dos archivos: <code>course.ovf</code> y <code>course-disk001.vmdk</code>.
+El archivo con la extensión <code>.vmdk</code> contiene el disco virtual. Es posible entonces crear la máquina
+virtual a partir de este archivo por ejemplo siguiendo las instrucciones es este
+<a href="https://medium.com/riow/how-to-open-a-vmdk-file-in-virtualbox-e1f711deacc4">link</a>. En nuestro caso
+hay que seleccionar Ubuntu 64-bit como el tipo de máquina virtual (no Windows como en el ejemplo).</p>
+<h3 id="utilizando-windows-virtualbox-crea-la-maquina-virtual-pero-al-arrancar-da-un-error">Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error</h3>
 <p>Al intentar arrancar la máquina virtual es posible que aparezca un mensaje de error
 similar a este:</p>
 <pre><code>VT-x/AMD-V hardware acceleration is not available on your system
