@@ -13,8 +13,8 @@ nav:
     - Ejercicios:
          - 0. Instalación: 'exercises/0_installation.md'
          - 1. Medidas de dispersión: 'exercises/1_earthquakes.md'
-         - 2. Correlaciones de ruido: 'exercises/2_correlations.md'
-         - 3. Modelos de velocidad: 'exercises/3_dispersion.md'
+         - 2. Modelos de velocidad: 'exercises/2_dispersion.md'
+         - 3. Correlaciones de ruido: 'exercises/3_correlations.md'
          - 4. Tomografía: 'exercises/4_tomography.md'
          - 5. Kernels de sensitividad: 'exercises/5_kernels.md'
          - 6. Inversión 1D: 'exercises/6_inversion.md'

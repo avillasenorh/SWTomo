@@ -66,7 +66,26 @@ A pesar de que `VirtualBox` es posiblemente el programa más extendido para crea
 virtuales con distintos sistemas operativos, es posible que os encontréis con algunos
 problemas al correr la máquina virtual. Los problemas más comunes son:
 
-### Utilizando Windows
+### Utilizando Windows: VirtualBox no puede crear la máquina virtual
+
+Al abrir el archivo `course.ova` con `File > Import Appliance` da un error y no crea la
+máquina virtual.
+
+Esto puede deberse a que el archivo `.ova` no se haya descargado correctamente y esté corrompido.
+Los archivos `.ova` son en realidad archivos `.tar`, así que pueden descomprimirse utilizando
+cualquier programa que pueda leer archivos `.tar`. Para ello cambiar el nombre del archivo
+`course.ova` a `course.tar`. Hacer doble-click sobre `course.tar` y comprobar si se descomprime
+correctamente. Si esto da algún error significa que probablemente el archivo está corrompido,
+así que habría que descargarlo de nuevo.
+
+Si funciona la descompresión, se debería haber creado dos archivos: `course.ovf` y `course-disk001.vmdk`.
+El archivo con la extensión `.vmdk` contiene el disco virtual. Es posible entonces crear la máquina
+virtual a partir de este archivo por ejemplo siguiendo las instrucciones es este
+[link](https://medium.com/riow/how-to-open-a-vmdk-file-in-virtualbox-e1f711deacc4). En nuestro caso
+hay que seleccionar Ubuntu 64-bit como el tipo de máquina virtual (no Windows como en el ejemplo).
+
+
+### Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error
 
 Al intentar arrancar la máquina virtual es posible que aparezca un mensaje de error
 similar a este:

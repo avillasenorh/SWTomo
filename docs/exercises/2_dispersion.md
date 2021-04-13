@@ -1,4 +1,4 @@
-# 3. Calcular las curvas de dispersión para un modelo de velocidad
+# 2. Calcular las curvas de dispersión para un modelo de velocidad
 
 Ir al directorio de trabajo para este ejercicio:
 

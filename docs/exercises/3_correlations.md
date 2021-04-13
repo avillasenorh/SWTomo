@@ -1,10 +1,10 @@
-# 2. Procesado de correlaciones de ruido ambiente
+# 3. Procesado de correlaciones de ruido ambiente
 
 En este ejercicio realizaremos medidas de velocidad de fase y de grupo
 utilizando un método manual (`do_mft`) y un método automático.
 
 
-## 2.1. Procesado manual con `do_mft`
+## 3.1. Procesado manual con `do_mft`
 
 La medida de curvas de dispersión para correlaciones de ruido ambiente con
 `do_mft` es igual a la medida para registros de terremotos, excepto que,
@@ -78,7 +78,7 @@ decrecer y presentar máximos y/o mínimos.
 verify that phase velocity curves usually do not have minima, while group
 velocities often have.
 
-## 2.2. Procesado automático utilizando `FTAN`
+## 3.2. Procesado automático utilizando `FTAN`
 
 Crear un archivo de parámetros llamado `aftan.par`(p.e. utilizando `gedit`) que contenga esta línea:
 
