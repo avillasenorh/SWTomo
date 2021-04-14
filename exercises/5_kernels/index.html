@@ -126,14 +126,40 @@
             <div class="section">
               
                 <h1 id="5-kernels-de-sensitividad">5. Kernels de sensitividad</h1>
-<p>Working directory:</p>
+<p>En este ejercicio calcularemos kernels de sensitividad de las
+ondas superficiales (LC, LU, RC, RU) para distintos modelos y
+periodos.</p>
+<p>En primer lugar ir al directorio de trabajo:</p>
 <pre><code>$ cd
 $ cd exercises/kernels
 </code></pre>
-<p>Obtain kernels for one model doing:</p>
+<p>En este directorio se encuentran dos archivos: <code>mod2kernels.sh</code> es el
+script de <code>bash</code> que genera y dibuja los kernels de sensitividad,
+y <code>ak135.mod</code> contiene el modelo de tierra a utilizar.</p>
+<p>Para generar los kernels simplemente introducir:</p>
 <pre><code>$ mod2kernels.sh ak135.mod
 </code></pre>
-<p>Change model file and see changes in kernels. Change also period by editing <code>mod2kernels.sh</code>.</p>
+<p>Este programa genera 4 archivos PostScript, con la sensibilidad para
+cada tipo de medida (velocidad de fase o grupo) y de onda (Love o
+Rayleigh): <code>LC.ps</code>, <code>LU.ps</code>, <code>RC.ps</code>, <code>RU.ps</code>.</p>
+<p>Utilizar <code>gv</code> para visualizar los resultados. Por ejemplo:</p>
+<pre><code>$ gv RC.ps
+</code></pre>
+<p>Esto debería generar una figura similar a esta:</p>
+<p><img alt="RC_kernel" src="../RC_kernel.png" /></p>
+<p>Los kernels de sensibilidad han sido calculados para un periodo de 5 segundos.
+Si se desea obtener los kernels para otros periodos, cambiar el valor del periodo
+en la línea 64 del script <code>mod2kernels.sh</code>:</p>
+<pre><code>for period in 5.0; do        # cambiar el valor de 5.0 por valor del periodo deseado
+</code></pre>
+<p>Asimismo puede cambiarse el modelo de tierra utilizado. Por ejemplo, para ver el
+efecto de los sedimentos en los kernels, crear un modelo con sedimentos y volver a
+correr el script:</p>
+<pre><code>$ cp ak135.mod sediments.mod
+$ gedit sediments.mod                # editar el archivo sediments.mod para añadir una capa de sedimentos
+$ mod2kernels.sh sediments.mod
+$ gv RC.ps
+</code></pre>
               
             </div>
           </div>
