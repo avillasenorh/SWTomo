@@ -132,6 +132,11 @@
                 <h1 id="3-procesado-de-correlaciones-de-ruido-ambiente">3. Procesado de correlaciones de ruido ambiente</h1>
 <p>En este ejercicio realizaremos medidas de velocidad de fase y de grupo
 utilizando un método manual (<code>do_mft</code>) y un método automático.</p>
+<p>Los datos que utilizaremos son correlaciones simétricas (promedio de la
+parte causal y acausal) para estaciones en la Península Ibérica, Marruecos
+y Canarias. En particular utilizaremos correlaciones entre la estación
+ARAC (Aracena, Huelva) con todas las demás estaciones de banda ancha
+con datos disponibles.</p>
 <h2 id="31-procesado-manual-con-do_mft">3.1. Procesado manual con <code>do_mft</code></h2>
 <p>La medida de curvas de dispersión para correlaciones de ruido ambiente con
 <code>do_mft</code> es igual a la medida para registros de terremotos, excepto que,
@@ -143,9 +148,12 @@ de los terremotos).</p>
 $ cd exercises/correlations
 $ ls                                    # ver el contenido del directorio
 </code></pre>
+<p>Los archivos de correlación contienen el código de las dos estaciones utilizadas
+y el sufijo <code>_ZZ_S</code> que indica que es una correlación simétrica (<code>_S</code>) entre
+componentes verticales (<code>ZZ</code>).</p>
 <p>Para seleccionar las velocidades de fase y de grupo de las correlaciones
 de forma manual, ejecutar <code>do_mft</code> con las siguientes opciones:</p>
-<pre><code>$ do_mft -G -IG *_S
+<pre><code>$ do_mft -G -IG *_ZZ_S
 </code></pre>
 <p>La pantalla que aparece es igual a la que obteníamos en el caso de terremotos,
 excepto que aprarece una opción adicional: <code>PhVel</code></p>
