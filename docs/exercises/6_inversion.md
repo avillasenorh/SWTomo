@@ -1,6 +1,9 @@
 # 6. Inversión 1D
 
-Working directory:
+En este ejercicio invertiremos curvas de dispersión para
+obtener un modelo de velocidad 1-D de la onda S.
+
+En primer lugar ir al directorio de trabajo:
 
     $ cd
     $ cd exercises/inversion
