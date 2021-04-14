@@ -3,6 +3,11 @@
 En este ejercicio realizaremos medidas de velocidad de fase y de grupo
 utilizando un método manual (`do_mft`) y un método automático.
 
+Los datos que utilizaremos son correlaciones simétricas (promedio de la
+parte causal y acausal) para estaciones en la Península Ibérica, Marruecos
+y Canarias. En particular utilizaremos correlaciones entre la estación
+ARAC (Aracena, Huelva) con todas las demás estaciones de banda ancha
+con datos disponibles.
 
 ## 3.1. Procesado manual con `do_mft`
 
@@ -18,10 +23,14 @@ Ir al directorio que contiene los archivos con las correlaciones de ruido ambien
     $ cd exercises/correlations
     $ ls                                    # ver el contenido del directorio
 
+Los archivos de correlación contienen el código de las dos estaciones utilizadas
+y el sufijo `_ZZ_S` que indica que es una correlación simétrica (`_S`) entre
+componentes verticales (`ZZ`).
+
 Para seleccionar las velocidades de fase y de grupo de las correlaciones
 de forma manual, ejecutar `do_mft` con las siguientes opciones:
 
-    $ do_mft -G -IG *_S
+    $ do_mft -G -IG *_ZZ_S
 
 La pantalla que aparece es igual a la que obteníamos en el caso de terremotos,
 excepto que aprarece una opción adicional: `PhVel`
