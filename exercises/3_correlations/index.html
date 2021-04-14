@@ -293,6 +293,10 @@ En ambos casos las líneas continuas corresponden a velocidad de fase, y las
 discontinuas a velocidad de grupo.</p>
 <p>Ejercicio: Cómo haríais para procesar todos los archivos de correlación
 en el directorio de trabajo (455 archivos).</p>
+<p>Posible solución:</p>
+<pre><code>$ ls -1 COR_*_ZZ_S | awk '{printf("-1 1.0 5.0 2 100 20 1 0.5 0.2 2 %s\n", $1)}' &gt; aftan.dat
+$ aftani_c_pgl aftan.par &gt; log        # redirects output to file log
+</code></pre>
               
             </div>
           </div>
