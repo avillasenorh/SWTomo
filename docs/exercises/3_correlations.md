@@ -194,3 +194,9 @@ discontinuas a velocidad de grupo.
 Ejercicio: Cómo haríais para procesar todos los archivos de correlación
 en el directorio de trabajo (455 archivos).
 
+Posible solución:
+
+    $ ls -1 COR_*_ZZ_S | awk '{printf("-1 1.0 5.0 2 100 20 1 0.5 0.2 2 %s\n", $1)}' > aftan.dat
+    $ aftani_c_pgl aftan.par > log        # redirects output to file log
+
+
