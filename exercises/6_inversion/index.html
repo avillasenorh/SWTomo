@@ -132,18 +132,35 @@ obtener un modelo de velocidad 1-D de la onda S.</p>
 <pre><code>$ cd
 $ cd exercises/inversion
 </code></pre>
-<p>Check contents of <code>surf_inv.sh</code> and run it:</p>
+<p>Archivos:</p>
+<ul>
+<li><code>surf_inv.sh</code>: script para realizar la inversión</li>
+<li><code>ak135.mod</code>: archivo con la descripción del modelo ak135, utilizado como modelo inicial</li>
+<li><code>test.disp</code>: archivo de prueba con curvas de dispersión para invertir</li>
+<li><code>P_*_*.disp</code>: archivos con curvas de dispersión para varios puntos latitud, longitud</li>
+</ul>
+<p>Editar el archivo <code>test.disp</code> para ver qué curvas (RC, LC, ...) están incluidas en el archivo:</p>
+<pre><code>$ gv test.disp
+</code></pre>
+<p>Para invertir las curvas de dispersión en <code>test.disp</code> utilizando <code>ak135.mod</code> como modelo inicial:</p>
 <pre><code>$ surf_inv.sh test.disp ak135.mod
 </code></pre>
-<p>Visualize results:</p>
+<p>El programa genera varios archivos de salida:</p>
+<ul>
+<li><code>model.out</code>: modelo resultante de la inversión</li>
+<li><code>MODEL.eps</code>: archivo PostScript con el dibujo del modelo final</li>
+<li><code>DATAFIT.eps</code>: archivo PostScript con plots del modelo final y del
+   ajuste de los datos (curvas de dispersión)</li>
+</ul>
+<p>Para visualizar los resultados:</p>
 <pre><code>$ gv MODEL.eps
 </code></pre>
 <p><img alt="model" src="../model.png" /></p>
 <pre><code>$ gv DATAFIT.eps
 </code></pre>
 <p><img alt="datafit" src="../datafit.png" /></p>
-<p>Ouptut file is in <code>model.out</code>.</p>
-<p>Change dispersion file, initial model, and parameters in <code>surf_inv.sh</code>.</p>
+<p>Utilizar otros archivos de dispersión (<code>P_*_*.disp</code>) como entrada para la inversión
+y otros modelos iniciales.</p>
               
             </div>
           </div>
