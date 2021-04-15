@@ -165,13 +165,13 @@ mayores que las velocidades de grupo, etc.)</p>
 <p>De los archivos <code>.dsp</code> y <code>.phv</code> conteniendo medidas de dispersión para trayectorias entre estaciones,
 hemos de pasar a archivos que contengan velocidades de grupo y de fase para un solo periodo.
 Concretamente para cada periodo deberemos obtener 4 archivos: RC, RU, LC, LU.</p>
-<p>Esta reorganización de los datos la lleva a cabo el script <code>get_mftdisp.sh</code> que se encuentra
+<p>Esta reorganización de los datos la lleva a cabo el script <code>get_mftdsp.sh</code> que se encuentra
 el directorio <code>/home/seismo/scripts</code>. Ir a esa directorio, editar el script con <code>gedit</code> e intentar
 entender la secuencia de comandos.</p>
 <p>Para ejecutar el script, volver al directorio donde se encuentran las medidas de dispersión:</p>
 <pre><code>$ cd
 $ cd exercises/measurements
-$ get_mftdisp.sh
+$ get_mftdsp.sh
 </code></pre>
 <p>Este script genera varios archivos con la extensión <code>.dat</code>, uno para cada tipo de medida (grupo o fase),
 tipo de onda (Love o Rayleigh) y para cada periodo. El contenido del archivo <code>RU020.0_MFT.dat</code> debe ser
