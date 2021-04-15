@@ -14,8 +14,13 @@ Check contents of `surf_inv.sh` and run it:
 
 Visualize results:
 
-    $ gv DATAFIT.eps
     $ gv MODEL.eps
+
+![model](model.png)
+
+    $ gv DATAFIT.eps
+
+![datafit](datafit.png)
 
 Ouptut file is in `model.out`.
 
