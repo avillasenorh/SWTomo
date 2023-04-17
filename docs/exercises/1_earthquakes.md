@@ -16,14 +16,15 @@ Lanzar el program `SAC` y ejecutar los siguientes comandos:
 
     $ sac
     SAC > r GUD*                    # lee los archivos para la estación GUD
-    SAC > lh columns 2 delta baz    # listar los valores de la distacia epicentral y backazimuth 
+    SAC > lh columns 2 dist baz     # listar los valores de la distacia epicentral y backazimuth 
+    SAC > xdiv nice power off       # utilizar etiquetas fáciles de leer en el eje x (eje de tiempo)
     SAC > qdp off                   # no utilizar baja resolución en los plots
     SAC > p1                        # dibujar los datos
     SAC > rmean                     # quitar la media
     SAC > taper                     # aplicar un taper antes de filtrar
     SAC > lowpass co .1 n 3 p 2     # filtro pasa bajas frecuencias
     SAC > ppk bell off              # plot and pick: usar “x” y “o” para hacer y deshacer zoom
-    SAC > ...                       # practicar con ppk y presionar "q" para volver al programa
+    SAC > ...                       # practicar con ppk y presionar "q" para volver al prompt de SAC
     SAC> r ESBBESBHZ ESBBESBHR      # leer solo las componentes vertical y radial
     SAC> rmean
     SAC> taper
