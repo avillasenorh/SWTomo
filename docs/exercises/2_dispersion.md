@@ -72,7 +72,8 @@ Y esta es la figura que muestra la velocidad de fase (curva verde) y velocidad d
 Utilizando este script podemos obtener las curvas de dispersión para otros modelos de tierra.
 
 Por ejemplo, para obtener las curvas de dispersión de un modelo oceánico (con capa de agua)
-se pueden seguir los siguentes pasos:
+se pueden seguir los siguentes pasos (si el archivo `ocean.mod` ya existe en el directorio
+entonces se puede pasar directamente al paso 3):
 
 1. copiar el archivo `ak135.mod` como `ocean.mod` (`$ cp ak135.mod ocean.mod`)
 2. editar `ocean.mod`:
@@ -80,7 +81,7 @@ se pueden seguir los siguentes pasos:
       en dos líneas con espesor de 2.5 km
     - cambiar las propiedades de la primera capa por las propiedades del agua:
       Vp = 1.5 km/s, Vs = 0.0 km/s, densidad = 1.0 gramo/cm3
-3. correr el script: `$ dispersion.sh ak135.mod`
+3. correr el script: `$ dispersion.sh ocean.mod`
 4. visualizar los resultados: `$ gv R.ocean.mod.ps`
 
 El resultado para ondas Rayleigh debe ser similar a la siguiente figura:
