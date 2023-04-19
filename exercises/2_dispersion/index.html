@@ -168,7 +168,8 @@ $ gv R.ak135.mod.ps
 <p><img alt="ak135_Rayleigh" src="../ak135_Rayleigh.png" /></p>
 <p>Utilizando este script podemos obtener las curvas de dispersión para otros modelos de tierra.</p>
 <p>Por ejemplo, para obtener las curvas de dispersión de un modelo oceánico (con capa de agua)
-se pueden seguir los siguentes pasos:</p>
+se pueden seguir los siguentes pasos (si el archivo <code>ocean.mod</code> ya existe en el directorio
+entonces se puede pasar directamente al paso 3):</p>
 <ol>
 <li>copiar el archivo <code>ak135.mod</code> como <code>ocean.mod</code> (<code>$ cp ak135.mod ocean.mod</code>)</li>
 <li>editar <code>ocean.mod</code>:<ul>
@@ -178,7 +179,7 @@ se pueden seguir los siguentes pasos:</p>
   Vp = 1.5 km/s, Vs = 0.0 km/s, densidad = 1.0 gramo/cm3</li>
 </ul>
 </li>
-<li>correr el script: <code>$ dispersion.sh ak135.mod</code></li>
+<li>correr el script: <code>$ dispersion.sh ocean.mod</code></li>
 <li>visualizar los resultados: <code>$ gv R.ocean.mod.ps</code></li>
 </ol>
 <p>El resultado para ondas Rayleigh debe ser similar a la siguiente figura:</p>
