@@ -17,7 +17,7 @@ Archivos:
 
 Editar el archivo `test.disp` para ver qué curvas (RC, LC, ...) están incluidas en el archivo:
 
-    $ gv test.disp
+    $ gedit test.disp
 
 Para invertir las curvas de dispersión en `test.disp` utilizando `ak135.mod` como modelo inicial:
 
