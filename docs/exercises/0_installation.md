@@ -6,6 +6,13 @@ conteniendo todo el software ya instalado y los datos necesarios para llevarlos 
 El archivo `course.ova` con la máquina virtual (6.4 GB) puede descargarse en este
 [link](https://www.dropbox.com/s/wr3spoq4fld1swb/course.ova?dl=0).
 
+La máquina virtual contiene todos los archivos necesarios para realizar los ejercicios del curso.
+**No hace falta descargar nada más**.
+Si solo quieres los directorios con los ejercicios (datos, scripts, código fuente), estos se
+puede obtener en el archivo [`course.tgz`](https://www.dropbox.com/scl/fi/s2ofvzmd04culby72omnc/course.tgz?rlkey=210bszhwvdv6svsacsk0wsxmx&dl=0).
+
+## Instalación en ordenadores con procesador Intel (ordenadores Windows o Macs anteriores a 2021)
+
 Para instalar la máquina virtual necesitaréis el software `VirtualBox`. Este software
 es gratuito y está disponible para ordenadores en Windows, macOS y Linux. Puede
 descargarse en la página principal de [VirtualBox](https://www.virtualbox.org).
@@ -60,13 +67,13 @@ Tiene instaladas las siguientes aplicaciones:
 Cuando hayáis confirmado que la máquina virtual funciona correctamente, entonces podréis
 borrar el archivo `course.ova` para ahorrar espacion en disco.
 
-## Posibles problemas:
+### Posibles problemas:
 
 A pesar de que `VirtualBox` es posiblemente el programa más extendido para crear máquinas
 virtuales con distintos sistemas operativos, es posible que os encontréis con algunos
 problemas al correr la máquina virtual. Los problemas más comunes son:
 
-### Utilizando Windows: VirtualBox no puede crear la máquina virtual
+#### Utilizando Windows: VirtualBox no puede crear la máquina virtual
 
 Al abrir el archivo `course.ova` con `File > Import Appliance` da un error y no crea la
 máquina virtual.
@@ -85,7 +92,7 @@ virtual a partir de este archivo por ejemplo siguiendo las instrucciones es este
 hay que seleccionar Ubuntu 64-bit como el tipo de máquina virtual (no Windows como en el ejemplo).
 
 
-### Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error
+#### Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error
 
 Al intentar arrancar la máquina virtual es posible que aparezca un mensaje de error
 similar a este:
@@ -107,7 +114,7 @@ deberse al problema descrito en este
 y que también tiene que ver con `Hyper-V`.
 
 
-### Utilizando macOS
+#### Utilizando macOS
 
 Si tenéis in Mac reciente con pantalla retina, también es posible que VirtualBox funcione 
 muy lentamente, incluso en ordenadores con varios núcleos y mucha memoria.
@@ -120,4 +127,11 @@ La solución es abrir VirtualBox en modo de baja resolución, siguiendo los sigu
 3. Contents -> Resources -> VirtualBoxVM.app (right click -> Get info)
 4. Check the "Open in Low Resolution" checkbox.
 5. Run the Virtual Machine in 100% scale mode and with the "VBoxSVGA" graphics controller selected
+
+
+## Instalación en Macs con procesador Apple Silicon
+
+Estos son chips diseñados por Apple basados en arquitectura ARM y comenzaron a salir al mercado en
+noviembre de 2020. Al tener una arquitectura diferente a los chips de Intel, ha de utilizarse un archivo
+de máquina virtual distinto.
 
