@@ -8,7 +8,7 @@
     <title>0. Instalación - SWTomo</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,12 +17,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +33,7 @@
           <a href="../.." class="icon icon-home"> SWTomo
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -67,15 +66,21 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">0. Instalación</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#posibles-problemas">Posibles problemas:</a>
+    <li class="toctree-l2"><a class="reference internal" href="#instalacion-en-ordenadores-con-procesador-intel-ordenadores-windows-o-macs-anteriores-a-2021">Instalación en ordenadores con procesador Intel (ordenadores Windows o Macs anteriores a 2021)</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#utilizando-windows-virtualbox-no-puede-crear-la-maquina-virtual">Utilizando Windows: VirtualBox no puede crear la máquina virtual</a>
+    <li class="toctree-l3"><a class="reference internal" href="#posibles-problemas">Posibles problemas:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#utilizando-windows-virtualbox-no-puede-crear-la-maquina-virtual">Utilizando Windows: VirtualBox no puede crear la máquina virtual</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#utilizando-windows-virtualbox-crea-la-maquina-virtual-pero-al-arrancar-da-un-error">Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error</a>
+    <li class="toctree-l4"><a class="reference internal" href="#utilizando-windows-virtualbox-crea-la-maquina-virtual-pero-al-arrancar-da-un-error">Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#utilizando-macos">Utilizando macOS</a>
+    <li class="toctree-l4"><a class="reference internal" href="#utilizando-macos">Utilizando macOS</a>
     </li>
         </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instalacion-en-macs-con-procesador-apple-silicon">Instalación en Macs con procesador Apple Silicon</a>
     </li>
     </ul>
                   </li>
@@ -105,9 +110,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Ejercicios &raquo;</li>
-      <li>0. Instalación</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Ejercicios</li>
+      <li class="breadcrumb-item active">0. Instalación</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -121,6 +126,11 @@
 conteniendo todo el software ya instalado y los datos necesarios para llevarlos a cabo.</p>
 <p>El archivo <code>course.ova</code> con la máquina virtual (6.4 GB) puede descargarse en este
 <a href="https://www.dropbox.com/s/wr3spoq4fld1swb/course.ova?dl=0">link</a>.</p>
+<p>La máquina virtual contiene todos los archivos necesarios para realizar los ejercicios del curso.
+<strong>No hace falta descargar nada más</strong>.
+Si solo quieres los directorios con los ejercicios (datos, scripts, código fuente), estos se
+puede obtener en el archivo <a href="https://www.dropbox.com/scl/fi/s2ofvzmd04culby72omnc/course.tgz?rlkey=210bszhwvdv6svsacsk0wsxmx&amp;dl=0"><code>course.tgz</code></a>.</p>
+<h2 id="instalacion-en-ordenadores-con-procesador-intel-ordenadores-windows-o-macs-anteriores-a-2021">Instalación en ordenadores con procesador Intel (ordenadores Windows o Macs anteriores a 2021)</h2>
 <p>Para instalar la máquina virtual necesitaréis el software <code>VirtualBox</code>. Este software
 es gratuito y está disponible para ordenadores en Windows, macOS y Linux. Puede
 descargarse en la página principal de <a href="https://www.virtualbox.org">VirtualBox</a>.</p>
@@ -173,11 +183,11 @@ Tiene instaladas las siguientes aplicaciones:</p>
 </ul>
 <p>Cuando hayáis confirmado que la máquina virtual funciona correctamente, entonces podréis
 borrar el archivo <code>course.ova</code> para ahorrar espacion en disco.</p>
-<h2 id="posibles-problemas">Posibles problemas:</h2>
+<h3 id="posibles-problemas">Posibles problemas:</h3>
 <p>A pesar de que <code>VirtualBox</code> es posiblemente el programa más extendido para crear máquinas
 virtuales con distintos sistemas operativos, es posible que os encontréis con algunos
 problemas al correr la máquina virtual. Los problemas más comunes son:</p>
-<h3 id="utilizando-windows-virtualbox-no-puede-crear-la-maquina-virtual">Utilizando Windows: VirtualBox no puede crear la máquina virtual</h3>
+<h4 id="utilizando-windows-virtualbox-no-puede-crear-la-maquina-virtual">Utilizando Windows: VirtualBox no puede crear la máquina virtual</h4>
 <p>Al abrir el archivo <code>course.ova</code> con <code>File &gt; Import Appliance</code> da un error y no crea la
 máquina virtual.</p>
 <p>Esto puede deberse a que el archivo <code>.ova</code> no se haya descargado correctamente y esté corrompido.
@@ -191,7 +201,7 @@ El archivo con la extensión <code>.vmdk</code> contiene el disco virtual. Es po
 virtual a partir de este archivo por ejemplo siguiendo las instrucciones es este
 <a href="https://medium.com/riow/how-to-open-a-vmdk-file-in-virtualbox-e1f711deacc4">link</a>. En nuestro caso
 hay que seleccionar Ubuntu 64-bit como el tipo de máquina virtual (no Windows como en el ejemplo).</p>
-<h3 id="utilizando-windows-virtualbox-crea-la-maquina-virtual-pero-al-arrancar-da-un-error">Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error</h3>
+<h4 id="utilizando-windows-virtualbox-crea-la-maquina-virtual-pero-al-arrancar-da-un-error">Utilizando Windows: VirtualBox crea la máquina virtual pero al arrancar da un error</h4>
 <p>Al intentar arrancar la máquina virtual es posible que aparezca un mensaje de error
 similar a este:</p>
 <pre><code>VT-x/AMD-V hardware acceleration is not available on your system
@@ -207,7 +217,7 @@ podéis encontrar información detallada sobre como activar <code>VT-x/AMD-V</co
 deberse al problema descrito en este 
 <a href="https://mybyways.com/blog/virtualbox-very-slow-on-windows-10">link</a>
 y que también tiene que ver con <code>Hyper-V</code>.</p>
-<h3 id="utilizando-macos">Utilizando macOS</h3>
+<h4 id="utilizando-macos">Utilizando macOS</h4>
 <p>Si tenéis in Mac reciente con pantalla retina, también es posible que VirtualBox funcione 
 muy lentamente, incluso en ordenadores con varios núcleos y mucha memoria.</p>
 <p>La solución es abrir VirtualBox en modo de baja resolución, siguiendo los siguientes pasos descritos en este
@@ -219,6 +229,10 @@ muy lentamente, incluso en ordenadores con varios núcleos y mucha memoria.</p>
 <li>Check the "Open in Low Resolution" checkbox.</li>
 <li>Run the Virtual Machine in 100% scale mode and with the "VBoxSVGA" graphics controller selected</li>
 </ol>
+<h2 id="instalacion-en-macs-con-procesador-apple-silicon">Instalación en Macs con procesador Apple Silicon</h2>
+<p>Estos son chips diseñados por Apple basados en arquitectura ARM y comenzaron a salir al mercado en
+noviembre de 2020. Al tener una arquitectura diferente a los chips de Intel, ha de utilizarse un archivo
+de máquina virtual distinto.</p>
               
             </div>
           </div><footer>
@@ -254,15 +268,16 @@ muy lentamente, incluso en ordenadores con varios núcleos y mucha memoria.</p>
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
