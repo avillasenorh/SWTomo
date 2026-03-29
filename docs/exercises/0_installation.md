@@ -13,7 +13,8 @@ puede obtener en el archivo [`course.tgz`](https://www.dropbox.com/scl/fi/s2ofvz
 
 Link to recent version of [CPS](https://www.dropbox.com/scl/fi/tjbp5hmk4w0d983n86kt4/NP330.Oct-26-2023.tgz?rlkey=w2e9w7sw839yutk7h5uj7021k&dl=0)
 
-Link to a recent version of [SAC](https://www.dropbox.com/scl/fi/rx5lyxol5ogjp6tnhiw2x/sac-102.0-mac.tar?rlkey=gymcxafjb9rywiu1gnfzqugzo&dl=0) for macOS. It has been compiled for `x86_64` but it works for Apple Silicon.
+Link to the source code of [SAC](https://www.dropbox.com/scl/fi/al36v249qmwuq21ueqo5i/sac-101.6_source.tar.gz?rlkey=thkdyn2qio331zbawsywz0lu0&dl=0)
+version 101.6. The compiled versions of SAC are for `x86_64` architecture, so it should be compiled for Apple Silicon.
 
 ## Instalación en ordenadores con procesador Intel (ordenadores Windows o Macs anteriores a 2021)
 
