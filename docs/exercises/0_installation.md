@@ -11,6 +11,8 @@ La máquina virtual contiene todos los archivos necesarios para realizar los eje
 Si solo quieres los directorios con los ejercicios (datos, scripts, código fuente), estos se
 puede obtener en el archivo [`course.tgz`](https://www.dropbox.com/scl/fi/s2ofvzmd04culby72omnc/course.tgz?rlkey=210bszhwvdv6svsacsk0wsxmx&dl=0).
 
+Link to recent version of [CPS](https://www.dropbox.com/scl/fi/tjbp5hmk4w0d983n86kt4/NP330.Oct-26-2023.tgz?rlkey=w2e9w7sw839yutk7h5uj7021k&dl=0)
+
 ## Instalación en ordenadores con procesador Intel (ordenadores Windows o Macs anteriores a 2021)
 
 Para instalar la máquina virtual necesitaréis el software `VirtualBox`. Este software
